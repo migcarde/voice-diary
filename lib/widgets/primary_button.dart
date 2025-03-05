@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:voice_diary/core/app_dimens.dart';
+
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+  });
+
+  final String text;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: double.infinity,
+          height: AppDimens.buttonHeight,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(
+            AppDimens.buttonPadding,
+          ),
+          decoration: BoxDecoration(
+            color: theme.buttonTheme.colorScheme?.primary,
+            borderRadius: BorderRadius.circular(
+              AppDimens.cardRadius,
+            ),
+          ),
+          child: Text(
+            text,
+            style: theme.textTheme.bodyLarge?.copyWith(
+              color: theme.buttonTheme.colorScheme?.surface,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
