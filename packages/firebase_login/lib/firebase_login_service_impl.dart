@@ -1,47 +1,105 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_login/_base/result.dart';
 import 'package:firebase_login/firebase_login_service.dart';
+import 'package:firebase_login/models/firebase_auth_errors.dart';
 import 'package:firebase_login/models/firebase_user.dart';
 
 class FirebaseLoginServiceImpl implements FirebaseLoginService {
   final FirebaseAuth _instance = FirebaseAuth.instance;
 
   @override
-  Future<FirebaseUser> createUserWithEmailAndPassword({
+  Future<Result<FirebaseUser>> loginWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    final result = await _instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      final result = await _instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    return result.user!.firebaseUser;
+      return Result.success(result.user!.firebaseUser);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(
+        FirebaseAuthErrors.fromString(
+          e.code,
+        ),
+      );
+    }
   }
 
   @override
-  // TODO: implement isLoggedIn
-  bool get isLoggedIn => throw UnimplementedError();
+  Future<Result<void>> logout() async {
+    try {
+      await _instance.signOut();
 
-  @override
-  Stream<User?> listenChanges() {
-    // TODO: implement listenChanges
-    throw UnimplementedError();
+      return Result.success(null);
+    } catch (e) {
+      return Result.failure(e);
+    }
   }
 
   @override
-  Future<FirebaseUser> loginWithEmailAndPassword(
-      {required String email, required String password}) {
-    // TODO: implement loginWithEmailAndPassword
-    throw UnimplementedError();
+  Future<Result<FirebaseUser>> createUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final result = await _instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return Result.success(result.user!.firebaseUser);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(
+        FirebaseAuthErrors.fromString(
+          e.code,
+        ),
+      );
+    }
   }
 
   @override
-  Future<void> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Stream<User?> listenChanges() => _instance.userChanges();
+
+  @override
+  bool get isLoggedIn => _instance.currentUser != null;
+
+  @override
+  String get uid => _instance.currentUser?.uid ?? '';
+
+  @override
+  Future<Result<void>> deleteAccount() async {
+    try {
+      await _instance.currentUser?.delete();
+
+      return Result.success(null);
+    } catch (e) {
+      return Result.failure(e);
+    }
   }
 
   @override
-  // TODO: implement uid
-  String get uid => throw UnimplementedError();
+  Future<Result<void>> reauthenticate({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      await _instance.currentUser?.reauthenticateWithCredential(
+        EmailAuthProvider.credential(
+          email: email,
+          password: password,
+        ),
+      );
+
+      return Result.success(null);
+    } on FirebaseAuthException catch (e) {
+      return Result.failure(
+        FirebaseAuthErrors.fromString(
+          e.code,
+        ),
+      );
+    }
+  }
 }

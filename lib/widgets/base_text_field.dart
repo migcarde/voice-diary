@@ -34,8 +34,10 @@ class BaseTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return TextField(
       controller: controller,
+      style: theme.textTheme.bodyLarge,
       obscureText: type.isPassword,
       enableSuggestions: !type.isPassword,
       autocorrect: !type.isPassword,
@@ -47,7 +49,7 @@ class BaseTextField extends StatelessWidget {
           onTap: onTapIcon ?? () {},
           child: Icon(
             icon,
-            color: Theme.of(context).primaryColor,
+            color: theme.primaryColor,
           ),
         ),
         border: const OutlineInputBorder(
@@ -59,7 +61,7 @@ class BaseTextField extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: theme.colorScheme.primaryContainer,
         errorText: errorText,
         errorMaxLines: 6,
       ),

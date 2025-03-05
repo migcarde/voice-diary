@@ -906,3 +906,4 @@ pubspec.lock
 pubspec.lock
 .env
 lib/env/env.g.dart
+firebase.json
