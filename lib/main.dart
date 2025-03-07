@@ -1,4 +1,6 @@
+import 'package:core/core.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_login/firebase_login.dart';
 import 'package:flutter/material.dart';
 import 'package:voice_diary/core/app_theme.dart';
 import 'package:voice_diary/core/dependency_injection/app_dependency_injection.dart';
@@ -21,9 +23,21 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  bool isLoggedIn = false;
+
   @override
   void initState() {
     super.initState();
+
+    getIt<FirebaseLoginService>().listenChanges().listen((user) {
+      final hasUser = user != null;
+
+      if (isLoggedIn != hasUser) {
+        setState(() {
+          isLoggedIn = hasUser;
+        });
+      }
+    });
   }
 
   @override
@@ -32,7 +46,9 @@ class _MainAppState extends State<MainApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       theme: AppTheme.mainTheme(),
-      routerConfig: AppRouter.router(),
+      routerConfig: AppRouter.router(
+        isLoggedIn,
+      ),
     );
   }
 }

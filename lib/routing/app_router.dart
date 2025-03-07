@@ -1,11 +1,12 @@
 import 'package:go_router/go_router.dart';
+import 'package:voice_diary/features/home/home_page.dart';
 import 'package:voice_diary/features/login/login_page.dart';
 import 'package:voice_diary/features/register/register_page.dart';
 import 'package:voice_diary/routing/routes.dart';
 
 class AppRouter {
-  static GoRouter router() => GoRouter(
-        initialLocation: Routes.login,
+  static GoRouter router(bool isLoggedIn) => GoRouter(
+        initialLocation: isLoggedIn ? Routes.home : Routes.login,
         routes: [
           GoRoute(
             path: Routes.login,
@@ -14,6 +15,10 @@ class AppRouter {
           GoRoute(
             path: Routes.register,
             builder: (context, state) => RegisterPage(),
+          ),
+          GoRoute(
+            path: Routes.home,
+            builder: (context, state) => HomePage(),
           ),
         ],
       );
