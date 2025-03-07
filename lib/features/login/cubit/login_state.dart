@@ -47,7 +47,7 @@ enum LoginError {
 
 class LoginState extends Equatable {
   const LoginState({
-    this.status = LoginStatus.loading,
+    this.status = LoginStatus.disconnected,
     this.error = LoginError.none,
     this.info = '',
   });

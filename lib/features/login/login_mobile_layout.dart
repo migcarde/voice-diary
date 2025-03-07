@@ -6,8 +6,8 @@ import 'package:voice_diary/features/login/cubit/login_cubit.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
 import 'package:voice_diary/routing/routes.dart';
 import 'package:voice_diary/widgets/base_text_field.dart';
-import 'package:voice_diary/widgets/primary_button.dart';
 import 'package:voice_diary/widgets/primary_link.dart';
+import 'package:voice_diary/widgets/primary_loading_button.dart';
 
 class LoginMobileLayout extends StatelessWidget {
   const LoginMobileLayout({super.key});
@@ -34,17 +34,20 @@ class LoginMobileLayout extends StatelessWidget {
               child: BaseTextField(
                 hint: l10n.password,
                 controller: passwordController,
+                textType: BaseTextFieldType.password,
+                errorText: state.error.getMessage(context),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
                 top: AppDimens.m,
               ),
-              child: PrimaryButton(
+              child: PrimaryLoadingButton(
                 text: l10n.login,
+                isLoading: state.status.isLoading,
                 onTap: () => context.read<LoginCubit>().login(
                       email: emailController.text,
-                      password: emailController.text,
+                      password: passwordController.text,
                     ),
               ),
             ),
