@@ -17,7 +17,7 @@ class BaseTextField extends StatelessWidget {
     this.icon,
     this.errorText,
     this.controller,
-    this.type = BaseTextFieldType.normal,
+    this.textType = BaseTextFieldType.normal,
     this.onSubmitted,
     this.onTapIcon,
   });
@@ -28,7 +28,7 @@ class BaseTextField extends StatelessWidget {
   final IconData? icon;
   final String? errorText;
   final TextEditingController? controller;
-  final BaseTextFieldType type;
+  final BaseTextFieldType textType;
   final Function(String)? onSubmitted;
   final VoidCallback? onTapIcon;
 
@@ -38,9 +38,9 @@ class BaseTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       style: theme.textTheme.bodyLarge,
-      obscureText: type.isPassword,
-      enableSuggestions: !type.isPassword,
-      autocorrect: !type.isPassword,
+      obscureText: textType.isPassword,
+      enableSuggestions: !textType.isPassword,
+      autocorrect: !textType.isPassword,
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
         hintText: hint,

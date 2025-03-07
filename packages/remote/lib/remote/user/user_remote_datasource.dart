@@ -1,4 +1,4 @@
-import 'package:remote/user/models/user_remote_entity.dart';
+import 'package:remote/remote/user/models/user_remote_entity.dart';
 
 abstract class UserRemoteDatasource {
   Future<void> saveUser(UserRemoteEntity user);

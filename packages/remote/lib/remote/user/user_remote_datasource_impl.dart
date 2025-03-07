@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:remote/user/models/user_remote_entity.dart';
-import 'package:remote/user/user_remote_datasource.dart';
+import 'package:remote/remote/user/models/user_remote_entity.dart';
+import 'package:remote/remote/user/user_remote_datasource.dart';
 
 class UserRemoteDatasourceImpl implements UserRemoteDatasource {
   final CollectionReference<Map<String, dynamic>> _collection =

@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
+import 'package:domain/domain.dart';
+import 'package:domain/repositories/user/models/user_entity.dart';
 import 'package:firebase_login/firebase_login_service.dart';
 import 'package:firebase_login/models/firebase_auth_errors.dart';
 import 'package:firebase_login/models/firebase_user.dart';
@@ -12,9 +16,11 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit({
     required this.firebaseLoginService,
+    required this.saveUser,
   }) : super(const RegisterState());
 
   final FirebaseLoginService firebaseLoginService;
+  final SaveUser saveUser;
 
   Future<void> register({
     required String email,
@@ -55,7 +61,22 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<void> _onSuccess(FirebaseUser user) async {
-    // TODO: Save user to database
+    final result = await saveUser(
+      UserEntity(
+        uid: user.uid,
+        email: user.email,
+        locale: Platform.localeName,
+      ),
+    );
+
+    result.when(
+      (_) => emit(
+        state.copyWith(
+          status: RegisterStatus.success,
+        ),
+      ),
+      (e) => _onError(e),
+    );
   }
 
   void _onError(Object failure) {
