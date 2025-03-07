@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/features/login/cubit/login_cubit.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
+import 'package:voice_diary/routing/routes.dart';
 import 'package:voice_diary/widgets/base_text_field.dart';
 import 'package:voice_diary/widgets/primary_button.dart';
 import 'package:voice_diary/widgets/primary_link.dart';
@@ -52,7 +54,9 @@ class LoginMobileLayout extends StatelessWidget {
               ),
               child: PrimaryLink(
                 text: l10n.are_you_not_registered_question,
-                onTap: () {},
+                onTap: () => context.push(
+                  Routes.register,
+                ),
               ),
             ),
           ],

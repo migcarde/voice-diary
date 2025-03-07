@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:voice_diary/features/login/login_page.dart';
+import 'package:voice_diary/features/register/register_page.dart';
 import 'package:voice_diary/routing/routes.dart';
 
 class AppRouter {
@@ -9,6 +10,10 @@ class AppRouter {
           GoRoute(
             path: Routes.login,
             builder: (context, state) => LoginPage(),
+          ),
+          GoRoute(
+            path: Routes.register,
+            builder: (context, state) => RegisterPage(),
           ),
         ],
       );
