@@ -16,6 +16,9 @@ dependencies:
   core:
     path: ../core
 
+  result:
+    path: ../result
+
   #External packages
   
   firebase_auth: ^5.5.1

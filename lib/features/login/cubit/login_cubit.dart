@@ -40,19 +40,6 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  Future<void> logout() async {
-    final result = await firebaseLoginService.logout();
-
-    result.when(
-      (_) {
-        emit(state.logout());
-      },
-      (failure) => emit(
-        state.copyWith(error: LoginError.unknown),
-      ),
-    );
-  }
-
   void _onError(Object error) => emit(
         state.copyWith(
           status: LoginStatus.disconnected,

@@ -1,4 +1,4 @@
-import 'package:core/core.dart';
+import 'package:equatable/equatable.dart';
 
 class Failure<T> extends Result<T> {
   final Object failure;
@@ -6,9 +6,7 @@ class Failure<T> extends Result<T> {
   const Failure(this.failure) : super._();
 
   @override
-  List<Object?> get props => [
-        failure,
-      ];
+  List<Object?> get props => [failure];
 }
 
 class Success<T> extends Result<T> {
@@ -17,9 +15,7 @@ class Success<T> extends Result<T> {
   const Success(this.data) : super._();
 
   @override
-  List<Object?> get props => [
-        data,
-      ];
+  List<Object?> get props => [data];
 }
 
 class Result<T> extends Equatable {

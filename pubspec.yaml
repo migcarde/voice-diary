@@ -26,6 +26,9 @@ dependencies:
   domain:
     path: ./packages/domain
 
+  result:
+    path: ./packages/result
+
   # External packages
 
   flutter_bloc: ^9.1.0

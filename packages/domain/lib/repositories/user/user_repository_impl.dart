@@ -1,7 +1,7 @@
-import 'package:domain/base/result.dart';
 import 'package:domain/repositories/user/models/user_entity.dart';
 import 'package:domain/repositories/user/user_repository.dart';
 import 'package:remote/remote.dart';
+import 'package:result/result.dart';
 
 class UserRepositoryImpl implements UserRepository {
   const UserRepositoryImpl({required this.remoteDatasource});

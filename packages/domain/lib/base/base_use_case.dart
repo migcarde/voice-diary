@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:domain/base/result.dart';
+import 'package:result/result.dart';
 
 abstract class BaseUseCase<T, Params> {
   Future<Result<T>> call(Params params);

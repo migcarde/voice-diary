@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_login/_base/result.dart';
 import 'package:firebase_login/firebase_login_service.dart';
 import 'package:firebase_login/models/firebase_auth_errors.dart';
 import 'package:firebase_login/models/firebase_user.dart';
+import 'package:result/result.dart';
 
 class FirebaseLoginServiceImpl implements FirebaseLoginService {
   final FirebaseAuth _instance = FirebaseAuth.instance;

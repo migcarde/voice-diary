@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_login/_base/result.dart';
 import 'package:firebase_login/models/firebase_user.dart';
+import 'package:result/result.dart';
 
 abstract class FirebaseLoginService {
   Future<Result<FirebaseUser>> loginWithEmailAndPassword({

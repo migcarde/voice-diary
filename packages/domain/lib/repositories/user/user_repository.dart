@@ -1,5 +1,5 @@
-import 'package:domain/base/result.dart';
 import 'package:domain/repositories/user/models/user_entity.dart';
+import 'package:result/result.dart';
 
 abstract class UserRepository {
   Future<Result<void>> saveUser(UserEntity user);
