@@ -1,0 +1,32 @@
+name: firebase_login
+description: "Package that manage firebase login as a service."
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ^3.6.1
+  flutter: 3.29.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Internal packages
+
+  core:
+    path: ../core
+
+  result:
+    path: ../result
+
+  #External packages
+  
+  firebase_auth: ^5.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  
+flutter:
+  uses-material-design: false
