@@ -22,6 +22,8 @@ class RegisterMobileLayout extends StatelessWidget {
       listener: (context, state) {
         switch (state.status) {
           case RegisterStatus.initial:
+          case RegisterStatus.success:
+          case RegisterStatus.loading:
             break;
           case RegisterStatus.error:
             AppSnackbar.show(
@@ -29,8 +31,6 @@ class RegisterMobileLayout extends StatelessWidget {
               type: AppSnackbarType.negative,
               context: context,
             );
-          case RegisterStatus.success:
-          case RegisterStatus.loading:
             break;
         }
       },

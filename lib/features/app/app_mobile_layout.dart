@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:voice_diary/core/app_theme.dart';
+import 'package:voice_diary/features/app/cubit/app_cubit.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
 import 'package:voice_diary/routing/app_router.dart';
 
@@ -8,11 +10,17 @@ class AppMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      theme: AppTheme.mainTheme(),
-      routerConfig: AppRouter.router,
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        return MaterialApp.router(
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          theme: AppTheme.mainTheme(),
+          routerConfig: AppRouter.router(
+            isAuthenticated: state.status.isConnected,
+          ),
+        );
+      },
     );
   }
 }

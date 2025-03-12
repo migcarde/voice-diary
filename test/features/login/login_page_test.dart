@@ -1,13 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
-import 'package:firebase_login/firebase_login_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:voice_diary/core/app_theme.dart';
-import 'package:voice_diary/core/dependency_injection/app_dependency_injection.dart';
+import 'package:voice_diary/features/app/cubit/app_cubit.dart';
 import 'package:voice_diary/features/login/cubit/login_cubit.dart';
 import 'package:voice_diary/features/login/login_mobile_layout.dart';
+import 'package:voice_diary/features/register/cubit/register_cubit.dart';
 import 'package:voice_diary/features/register/register_page.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
 import 'package:voice_diary/l10n/app_localizations_en.dart';
@@ -18,7 +18,10 @@ import 'package:voice_diary/widgets/primary_loading_button.dart';
 
 class MockLoginCubit extends MockCubit<LoginState> implements LoginCubit {}
 
-class MockFirebaseLoginService extends Mock implements FirebaseLoginService {}
+class MockRegisterCubit extends MockCubit<RegisterState>
+    implements RegisterCubit {}
+
+class MockAppCubit extends MockCubit<AppState> implements AppCubit {}
 
 void main() {
   group('Login', () {
@@ -167,19 +170,38 @@ void main() {
   });
 
   group('Navigation', () {
-    setUpAll(() {
-      AppDependencyInjection.init();
+    late MockLoginCubit loginCubit = MockLoginCubit();
+    late MockRegisterCubit registerCubit;
+    setUp(() {
+      loginCubit = MockLoginCubit();
+      registerCubit = MockRegisterCubit();
+      getIt.registerFactory<LoginCubit>(
+        () => loginCubit,
+      );
+      getIt.registerFactory<RegisterCubit>(
+        () => registerCubit,
+      );
     });
     testWidgets('to register page on tap are you not registered button',
         (WidgetTester tester) async {
-          when(() => getIt<FirebaseLoginService>().listenChanges()).thenAnswer(answer)
+      when(() => loginCubit.state).thenReturn(
+        LoginState(
+          status: LoginStatus.connected,
+        ),
+      );
+      when(() => registerCubit.state).thenReturn(
+        RegisterState(),
+      );
+
       await tester.pumpWidget(
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           locale: Locale('en'),
           theme: AppTheme.mainTheme(),
-          routerConfig: AppRouter.router(false),
+          routerConfig: AppRouter.router(
+            isAuthenticated: false,
+          ),
         ),
       );
       await tester.tap(find.byType(PrimaryLink));
