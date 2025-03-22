@@ -182,6 +182,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email not valid'**
   String get email_not_valid;
+
+  /// No description provided for @tap_to_begin_your_voice_recor_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to begin your voice record entry'**
+  String get tap_to_begin_your_voice_recor_entry;
+
+  /// No description provided for @recording_dots.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording...'**
+  String get recording_dots;
+
+  /// No description provided for @did_you_want_to_save_this_recording.
+  ///
+  /// In en, this message translates to:
+  /// **'Did you want to save this recording?'**
+  String get did_you_want_to_save_this_recording;
+
+  /// No description provided for @are_you_sure.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure?'**
+  String get are_you_sure;
+
+  /// No description provided for @this_action_cannot_be_undone.
+  ///
+  /// In en, this message translates to:
+  /// **'This action cannot be undone'**
+  String get this_action_cannot_be_undone;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @recording_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Recording saved'**
+  String get recording_saved;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Tags'**
+  String get tags;
+
+  /// No description provided for @base_on_your_record_we_recommend_these_tags.
+  ///
+  /// In en, this message translates to:
+  /// **'Base on your record, we recommend these tags'**
+  String get base_on_your_record_we_recommend_these_tags;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

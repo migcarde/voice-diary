@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voice_diary/extensions/build_context_extensions.dart';
 import 'package:voice_diary/widgets/base_screen.dart';
 
 class BaseScaffold extends StatelessWidget {
@@ -13,7 +14,7 @@ class BaseScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
     return Scaffold(
       appBar: title != null && title?.isNotEmpty == true
           ? AppBar(

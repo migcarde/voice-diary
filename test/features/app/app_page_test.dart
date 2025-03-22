@@ -27,21 +27,6 @@ void main() {
         () => loginCubit,
       );
     });
-    testWidgets('navigates to login when user is disconnected',
-        (WidgetTester tester) async {
-      when(() => appCubit.state).thenReturn(
-        AppState(),
-      );
-      when(() => appCubit.init()).thenAnswer((_) async {});
-
-      when(() => loginCubit.state).thenReturn(LoginState());
-
-      await tester.pumpWidget(
-        AppPage(),
-      );
-      expect(find.byType(LoginPage), findsOneWidget);
-    });
-
     testWidgets('navigates to home when user is connected',
         (WidgetTester tester) async {
       final userViewModel = UserViewModel(
@@ -61,6 +46,20 @@ void main() {
         AppPage(),
       );
       expect(find.byType(HomePage), findsOneWidget);
+    });
+    testWidgets('navigates to login when user is disconnected',
+        (WidgetTester tester) async {
+      when(() => appCubit.state).thenReturn(
+        AppState(),
+      );
+      when(() => appCubit.init()).thenAnswer((_) async {});
+
+      when(() => loginCubit.state).thenReturn(LoginState());
+
+      await tester.pumpWidget(
+        AppPage(),
+      );
+      expect(find.byType(LoginPage), findsOneWidget);
     });
   });
 }
