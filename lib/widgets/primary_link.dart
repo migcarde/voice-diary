@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voice_diary/extensions/build_context_extensions.dart';
 
 class PrimaryLink extends StatelessWidget {
   const PrimaryLink({
@@ -12,7 +13,7 @@ class PrimaryLink extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     return GestureDetector(
       onTap: onTap,

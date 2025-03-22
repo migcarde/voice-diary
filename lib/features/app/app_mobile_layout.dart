@@ -10,17 +10,14 @@ class AppMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppCubit, AppState>(
-      builder: (context, state) {
-        return MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          theme: AppTheme.mainTheme(),
-          routerConfig: AppRouter.router(
-            isAuthenticated: state.status.isConnected,
-          ),
-        );
-      },
+    return BlocListener<AppCubit, AppState>(
+      listener: (context, state) => AppRouter.router.refresh(),
+      child: MaterialApp.router(
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        theme: AppTheme.mainTheme(),
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }

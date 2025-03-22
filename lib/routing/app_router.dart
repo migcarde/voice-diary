@@ -1,28 +1,24 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:voice_diary/features/home/home_page.dart';
-import 'package:voice_diary/features/login/login_page.dart';
-import 'package:voice_diary/features/register/register_page.dart';
+import 'package:voice_diary/features/app/cubit/app_cubit.dart';
+import 'package:voice_diary/routing/paths.dart';
 import 'package:voice_diary/routing/routes.dart';
 
 class AppRouter {
-  static GoRouter router({
-    required bool isAuthenticated,
-  }) =>
-      GoRouter(
-        initialLocation: isAuthenticated ? Routes.home : Routes.login,
-        routes: [
-          GoRoute(
-            path: Routes.login,
-            builder: (context, state) => LoginPage(),
-          ),
-          GoRoute(
-            path: Routes.register,
-            builder: (context, state) => RegisterPage(),
-          ),
-          GoRoute(
-            path: Routes.home,
-            builder: (context, state) => HomePage(),
-          ),
-        ],
-      );
+  static GoRouter router = GoRouter(
+    initialLocation: Paths.home,
+    routes: Routes.list,
+    redirect: (context, state) {
+      final status = context.read<AppCubit>().state.status;
+
+      if (!status.isConnected && state.fullPath != Paths.register) {
+        return Paths.login;
+      } else if (status.isConnected &&
+          (state.fullPath == Paths.register || state.fullPath == Paths.login)) {
+        return Paths.home;
+      } else {
+        return null;
+      }
+    },
+  );
 }

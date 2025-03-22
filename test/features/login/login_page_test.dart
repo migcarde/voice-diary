@@ -170,16 +170,22 @@ void main() {
   });
 
   group('Navigation', () {
-    late MockLoginCubit loginCubit = MockLoginCubit();
+    late MockLoginCubit loginCubit;
     late MockRegisterCubit registerCubit;
+    late MockAppCubit appCubit;
+
     setUp(() {
       loginCubit = MockLoginCubit();
       registerCubit = MockRegisterCubit();
+      appCubit = MockAppCubit();
       getIt.registerFactory<LoginCubit>(
         () => loginCubit,
       );
       getIt.registerFactory<RegisterCubit>(
         () => registerCubit,
+      );
+      getIt.registerLazySingleton<AppCubit>(
+        () => appCubit,
       );
     });
     testWidgets('to register page on tap are you not registered button',
@@ -192,15 +198,21 @@ void main() {
       when(() => registerCubit.state).thenReturn(
         RegisterState(),
       );
+      when(() => appCubit.state).thenReturn(
+        AppState(
+          status: AppStatus.disconnected,
+        ),
+      );
 
       await tester.pumpWidget(
-        MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('en'),
-          theme: AppTheme.mainTheme(),
-          routerConfig: AppRouter.router(
-            isAuthenticated: false,
+        BlocProvider(
+          create: (context) => getIt<AppCubit>(),
+          child: MaterialApp.router(
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Locale('en'),
+            theme: AppTheme.mainTheme(),
+            routerConfig: AppRouter.router,
           ),
         ),
       );

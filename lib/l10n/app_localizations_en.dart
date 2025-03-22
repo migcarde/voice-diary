@@ -52,4 +52,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get email_not_valid => 'Email not valid';
+
+  @override
+  String get tap_to_begin_your_voice_recor_entry => 'Tap to begin your voice record entry';
+
+  @override
+  String get recording_dots => 'Recording...';
+
+  @override
+  String get did_you_want_to_save_this_recording => 'Did you want to save this recording?';
+
+  @override
+  String get are_you_sure => 'Are you sure?';
+
+  @override
+  String get this_action_cannot_be_undone => 'This action cannot be undone';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get recording_saved => 'Recording saved';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get tags => 'Tags';
+
+  @override
+  String get base_on_your_record_we_recommend_these_tags => 'Base on your record, we recommend these tags';
 }

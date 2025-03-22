@@ -29,4 +29,12 @@ class AppCubit extends Cubit<AppState> {
       }
     });
   }
+
+  Future<void> logout() async {
+    await firebaseLoginService.logout();
+
+    emit(
+      state.logout(),
+    );
+  }
 }

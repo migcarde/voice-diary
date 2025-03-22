@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/core/container_decorators.dart';
+import 'package:voice_diary/extensions/build_context_extensions.dart';
 import 'package:voice_diary/widgets/click_detector.dart';
 
 class PrimaryChip extends StatelessWidget {
@@ -16,7 +17,7 @@ class PrimaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = context.theme;
 
     return ClickDetector(
       onTap: onTap,
