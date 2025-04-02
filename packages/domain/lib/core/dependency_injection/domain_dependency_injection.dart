@@ -8,9 +8,9 @@ import 'package:local/local/core/dependency_injection/local_dependency_injection
 import 'package:remote/remote.dart';
 
 class DomainDependencyInjection {
-  static void init() {
+  static Future<void> init() async {
     RemoteDependencyInjection.init();
-    LocalDependencyInjection.init();
+    await LocalDependencyInjection.init();
 
     // Repositories
 

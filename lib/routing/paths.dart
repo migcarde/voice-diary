@@ -4,4 +4,5 @@ class Paths {
   static const home = '/home';
   static const voiceRecordEntry = '/voiceRecordEntry';
   static const saveRecordEntry = '/saveVoiceRecordEntry';
+  static const changeLanguage = '/changeLanguage';
 }

@@ -33,16 +33,22 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   }
 
   Future<void> _openRecorder() async {
-    await Future.wait(
-      [
-        soundRecoderService.open(),
-        soundRecoderService.setSubscriptionDuration(
-          const Duration(
-            seconds: 1,
-          ),
-        ),
-      ],
+    await soundRecoderService.open();
+    await soundRecoderService.setSubscriptionDuration(
+      const Duration(
+        seconds: 1,
+      ),
     );
+    // await Future.wait(
+    //   [
+    //     soundRecoderService.open(),
+    //     soundRecoderService.setSubscriptionDuration(
+    //       const Duration(
+    //         seconds: 1,
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 
   Future<void> setDuration(Duration duration) async => emit(

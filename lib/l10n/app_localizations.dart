@@ -254,6 +254,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Base on your record, we recommend these tags'**
   String get base_on_your_record_we_recommend_these_tags;
+
+  /// No description provided for @change_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Change language'**
+  String get change_language;
+
+  /// No description provided for @delete_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get delete_account;
+
+  /// No description provided for @you_must_enter_your_credentials_again_to_delete_your_account.
+  ///
+  /// In en, this message translates to:
+  /// **'You must enter your credentials again to delete your account'**
+  String get you_must_enter_your_credentials_again_to_delete_your_account;
+
+  /// No description provided for @all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered.
+  ///
+  /// In en, this message translates to:
+  /// **'All date related to this account will be deleted and cannot be recovered'**
+  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered;
+
+  /// No description provided for @records.
+  ///
+  /// In en, this message translates to:
+  /// **'Records'**
+  String get records;
+
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @you_have_not_added_any_record_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t added any record yet'**
+  String get you_have_not_added_any_record_yet;
+
+  /// No description provided for @record_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Record entry'**
+  String get record_entry;
+
+  /// No description provided for @entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry'**
+  String get entry;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

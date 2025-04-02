@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/extensions/build_context_extensions.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/cubit/save_record_entry_cubit.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
+import 'package:voice_diary/routing/paths.dart';
 import 'package:voice_diary/widgets/base_text_field.dart';
 import 'package:voice_diary/widgets/primary_chip.dart';
 import 'package:voice_diary/widgets/primary_loading_button.dart';
@@ -19,7 +21,12 @@ class SaveRecordEntryMobileLayout extends StatelessWidget {
 
     final titleController = TextEditingController();
     final tagsController = TextEditingController();
-    return BlocBuilder<SaveRecordEntryCubit, SaveRecordEntryState>(
+    return BlocConsumer<SaveRecordEntryCubit, SaveRecordEntryState>(
+      listener: (context, state) {
+        if (state.status.isSuccess) {
+          context.pushReplacement(Paths.home);
+        }
+      },
       builder: (context, state) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,

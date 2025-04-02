@@ -15,7 +15,7 @@ abstract class FirebaseLoginService {
   Stream<User?> listenChanges();
   bool get isLoggedIn;
   String get uid;
-  Future<void> deleteAccount();
+  Future<Result<void>> deleteAccount();
   Future<Result<void>> reauthenticate({
     required String email,
     required String password,

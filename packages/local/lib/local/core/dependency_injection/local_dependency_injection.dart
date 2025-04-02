@@ -5,7 +5,7 @@ import 'package:local/local/core/object_box_impl.dart';
 import 'package:local/local/record/record_local_datasource_impl.dart';
 
 class LocalDependencyInjection {
-  static void init() {
+  static Future<void> init() async {
     getIt.registerLazySingleton<ObjectBox>(
       () => ObjectBoxImpl(),
     );
@@ -15,5 +15,7 @@ class LocalDependencyInjection {
         localDatasource: getIt(),
       ),
     );
+
+    await getIt<ObjectBox>().init();
   }
 }
