@@ -7,6 +7,7 @@ enum SaveRecordEntryStatus {
   failure;
 
   bool get isLoading => this == SaveRecordEntryStatus.loading;
+  bool get isSuccess => this == SaveRecordEntryStatus.success;
 }
 
 class SaveRecordEntryState extends Equatable {

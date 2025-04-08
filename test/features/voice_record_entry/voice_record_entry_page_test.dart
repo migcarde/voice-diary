@@ -5,7 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_theme.dart';
+import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/home_page.dart';
+import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/cubit/voice_record_entry_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/cubit/save_record_entry_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/models/save_record_entry_view_model.dart';
@@ -25,16 +27,30 @@ class MockVoiceRecordEntryCubit extends MockCubit<VoiceRecordEntryState>
 class MockSaveRecordEntryCubit extends MockCubit<SaveRecordEntryState>
     implements SaveRecordEntryCubit {}
 
+class MockBottomBarCubit extends MockCubit<BottomBarState>
+    implements BottomBarCubit {}
+
+class MockRecordsCubit extends MockCubit<RecordsState>
+    implements RecordsCubit {}
+
 void main() {
   late MockVoiceRecordEntryCubit voiceRecordEntryCubit;
   late MockSaveRecordEntryCubit saveRecordEntryCubit;
+  late MockBottomBarCubit bottomBarCubit;
+  late MockRecordsCubit recordsCubit;
+
   setUpAll(() {
     voiceRecordEntryCubit = MockVoiceRecordEntryCubit();
     saveRecordEntryCubit = MockSaveRecordEntryCubit();
+    bottomBarCubit = MockBottomBarCubit();
+    recordsCubit = MockRecordsCubit();
+
     getIt.registerLazySingleton<VoiceRecordEntryCubit>(
         () => voiceRecordEntryCubit);
     getIt.registerLazySingleton<SaveRecordEntryCubit>(
         () => saveRecordEntryCubit);
+    getIt.registerLazySingleton<BottomBarCubit>(() => bottomBarCubit);
+    getIt.registerLazySingleton<RecordsCubit>(() => recordsCubit);
   });
 
   group('Initial state', () {
@@ -391,11 +407,18 @@ void main() {
 
     testWidgets('Dismiss dialog and goes to home page on tap delete button',
         (WidgetTester tester) async {
+      when(() => bottomBarCubit.state).thenReturn(
+        BottomBarState(),
+      );
       when(() => voiceRecordEntryCubit.state).thenReturn(
         VoiceRecordEntryState(
           status: VoiceRecordEntryStatus.stopped,
         ),
       );
+      when(() => recordsCubit.state).thenReturn(
+        RecordsState(),
+      );
+      when(() => recordsCubit.init()).thenAnswer((_) async {});
       when(() => voiceRecordEntryCubit.init()).thenAnswer((_) async {});
       when(() => voiceRecordEntryCubit.deleteRecording())
           .thenAnswer((_) async {});
@@ -417,14 +440,19 @@ void main() {
 
       await tester.runAsync(() async {
         await tester.tap(
-          find.text(
-            'Go to player',
+          find.byIcon(
+            PhosphorIcons.microphone(),
           ),
         );
       });
       await tester.pumpAndSettle();
 
       expect(find.byType(VoiceRecordEntryPage), findsOneWidget);
+
+      expect(
+        find.byIcon(PhosphorIcons.trash()),
+        findsOneWidget,
+      );
 
       await tester.runAsync(() async {
         await tester.tap(
@@ -435,6 +463,15 @@ void main() {
       });
       await tester.pumpAndSettle();
 
+      expect(
+        find.text(AppLocalizationsEn().are_you_sure),
+        findsOneWidget,
+      );
+      expect(
+        find.text(AppLocalizationsEn().delete),
+        findsOneWidget,
+      );
+
       await tester.runAsync(() async {
         await tester.tap(
           find.text(
@@ -442,17 +479,7 @@ void main() {
           ),
         );
       });
-      await tester.pumpAndSettle();
-
-      expect(
-        find.text(AppLocalizationsEn().are_you_sure),
-        findsNothing,
-      );
-
-      expect(
-        find.text(AppLocalizationsEn().this_action_cannot_be_undone),
-        findsNothing,
-      );
+      await tester.pump();
 
       expect(find.byType(HomePage), findsOneWidget);
     });

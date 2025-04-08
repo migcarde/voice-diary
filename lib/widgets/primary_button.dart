@@ -7,10 +7,12 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    this.leftIcon,
   });
 
   final String text;
   final VoidCallback onTap;
+  final IconData? leftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +35,25 @@ class PrimaryButton extends StatelessWidget {
               AppDimens.cardRadius,
             ),
           ),
-          child: Text(
-            text,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              color: theme.buttonTheme.colorScheme?.surface,
-            ),
+          child: Row(
+            children: [
+              if (leftIcon != null)
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: AppDimens.s,
+                  ),
+                  child: Icon(
+                    leftIcon,
+                    color: theme.buttonTheme.colorScheme?.surface,
+                  ),
+                ),
+              Text(
+                text,
+                style: theme.textTheme.bodyLarge?.copyWith(
+                  color: theme.buttonTheme.colorScheme?.surface,
+                ),
+              ),
+            ],
           ),
         ),
       ),

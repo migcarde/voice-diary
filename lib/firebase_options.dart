@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'voice-diary-5869c.firebasestorage.app',
     iosBundleId: 'com.example.voiceDiary',
   );
+
 }

@@ -88,4 +88,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get base_on_your_record_we_recommend_these_tags => 'Base on your record, we recommend these tags';
+
+  @override
+  String get change_language => 'Change language';
+
+  @override
+  String get delete_account => 'Delete account';
+
+  @override
+  String get you_must_enter_your_credentials_again_to_delete_your_account => 'You must enter your credentials again to delete your account';
+
+  @override
+  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered => 'All date related to this account will be deleted and cannot be recovered';
+
+  @override
+  String get records => 'Records';
+
+  @override
+  String get settings => 'Settings';
+
+  @override
+  String get you_have_not_added_any_record_yet => 'You haven\'t added any record yet';
+
+  @override
+  String get record_entry => 'Record entry';
+
+  @override
+  String get entry => 'Entry';
 }
