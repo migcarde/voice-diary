@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:voice_diary/core/app_theme.dart';
@@ -10,9 +12,12 @@ class AppMobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppCubit, AppState>(
+    return BlocConsumer<AppCubit, AppState>(
       listener: (context, state) => AppRouter.router.refresh(),
-      child: MaterialApp.router(
+      buildWhen: (previous, current) =>
+          previous.selectedLocale != current.selectedLocale,
+      builder: (context, state) => MaterialApp.router(
+        locale: state.selectedLocale ?? Locale(Platform.localeName),
         supportedLocales: AppLocalizations.supportedLocales,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         theme: AppTheme.mainTheme(),

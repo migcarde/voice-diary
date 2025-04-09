@@ -71,5 +71,11 @@
     "record_entry": "Record entry",
     "@record_entry": {},
     "entry": "Entry",
-    "@entry": {}
+    "@entry": {},
+    "english": "English",
+    "@english": {},
+    "spanish": "Spanish",
+    "@spanish": {},
+    "change_language_success": "Change language success",
+    "@change_language_success": {}
 }

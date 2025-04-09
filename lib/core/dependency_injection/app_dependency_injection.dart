@@ -5,6 +5,7 @@ import 'package:flutter_sound/flutter_sound.dart';
 import 'package:voice_diary/features/app/cubit/app_cubit.dart';
 import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
+import 'package:voice_diary/features/home/settings/change_language/cubit/change_language_cubit.dart';
 import 'package:voice_diary/features/home/settings/cubit/settings_cubit.dart';
 import 'package:voice_diary/features/home/settings/reauthentication/cubit/reauthentication_cubit.dart';
 import 'package:voice_diary/features/login/cubit/login_cubit.dart';
@@ -39,6 +40,7 @@ class AppDependencyInjection {
       () => RegisterCubit(
         firebaseLoginService: getIt(),
         saveUser: getIt(),
+        saveUserPreferences: getIt(),
       ),
     );
 
@@ -80,6 +82,13 @@ class AppDependencyInjection {
     getIt.registerFactory<RecordsCubit>(
       () => RecordsCubit(
         getAllRecords: getIt(),
+      ),
+    );
+
+    getIt.registerFactory<ChangeLanguageCubit>(
+      () => ChangeLanguageCubit(
+        getUserPreferences: getIt(),
+        saveUserPreferences: getIt(),
       ),
     );
   }

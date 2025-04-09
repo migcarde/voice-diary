@@ -36,6 +36,7 @@ class PrimaryButton extends StatelessWidget {
             ),
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (leftIcon != null)
                 Padding(

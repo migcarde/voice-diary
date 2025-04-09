@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:voice_diary/features/home/home_page.dart';
+import 'package:voice_diary/features/home/settings/change_language/change_language_page.dart';
 import 'package:voice_diary/features/login/login_page.dart';
 import 'package:voice_diary/features/register/register_page.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/models/save_record_entry_view_model.dart';
@@ -30,6 +31,10 @@ class Routes {
           builder: (context, state) => SaveRecordEntryPage(
             viewModel: state.extra! as SaveRecordEntryViewModel,
           ),
+        ),
+        GoRoute(
+          path: Paths.changeLanguage,
+          builder: (context, state) => ChangeLanguagePage(),
         ),
       ];
 }

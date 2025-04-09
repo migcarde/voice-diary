@@ -15,6 +15,7 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'local/record/models/record_local_entity.dart';
+import 'local/user_preferences/models/user_preferences_local_entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -49,6 +50,25 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(5, 7571024112495273133),
             name: 'tags',
             type: 30,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(2, 276343024614356600),
+      name: 'UserPreferencesLocalEntity',
+      lastPropertyId: const obx_int.IdUid(2, 590671320434861678),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 7996433342778773472),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 590671320434861678),
+            name: 'selectedLocale',
+            type: 9,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -90,7 +110,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 3059967523835835008),
+      lastEntityId: const obx_int.IdUid(2, 276343024614356600),
       lastIndexId: const obx_int.IdUid(0, 0),
       lastRelationId: const obx_int.IdUid(0, 0),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -148,7 +168,38 @@ obx_int.ModelDefinition getObjectBoxModel() {
               tags: tagsParam);
 
           return object;
-        })
+        }),
+    UserPreferencesLocalEntity:
+        obx_int.EntityDefinition<UserPreferencesLocalEntity>(
+            model: _entities[1],
+            toOneRelations: (UserPreferencesLocalEntity object) => [],
+            toManyRelations: (UserPreferencesLocalEntity object) => {},
+            getId: (UserPreferencesLocalEntity object) => object.id,
+            setId: (UserPreferencesLocalEntity object, int id) {
+              object.id = id;
+            },
+            objectToFB: (UserPreferencesLocalEntity object, fb.Builder fbb) {
+              final selectedLocaleOffset =
+                  fbb.writeString(object.selectedLocale);
+              fbb.startTable(3);
+              fbb.addInt64(0, object.id);
+              fbb.addOffset(1, selectedLocaleOffset);
+              fbb.finish(fbb.endTable());
+              return object.id;
+            },
+            objectFromFB: (obx.Store store, ByteData fbData) {
+              final buffer = fb.BufferContext(fbData);
+              final rootOffset = buffer.derefObject(0);
+              final idParam =
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+              final selectedLocaleParam =
+                  const fb.StringReader(asciiOptimization: true)
+                      .vTableGet(buffer, rootOffset, 6, '');
+              final object = UserPreferencesLocalEntity(
+                  id: idParam, selectedLocale: selectedLocaleParam);
+
+              return object;
+            })
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -175,4 +226,16 @@ class RecordLocalEntity_ {
   /// See [RecordLocalEntity.tags].
   static final tags = obx.QueryStringVectorProperty<RecordLocalEntity>(
       _entities[0].properties[4]);
+}
+
+/// [UserPreferencesLocalEntity] entity fields to define ObjectBox queries.
+class UserPreferencesLocalEntity_ {
+  /// See [UserPreferencesLocalEntity.id].
+  static final id = obx.QueryIntegerProperty<UserPreferencesLocalEntity>(
+      _entities[1].properties[0]);
+
+  /// See [UserPreferencesLocalEntity.selectedLocale].
+  static final selectedLocale =
+      obx.QueryStringProperty<UserPreferencesLocalEntity>(
+          _entities[1].properties[1]);
 }
