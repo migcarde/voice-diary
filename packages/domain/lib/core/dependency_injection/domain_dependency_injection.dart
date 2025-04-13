@@ -3,6 +3,8 @@ import 'package:domain/repositories/record/record_repository.dart';
 import 'package:domain/repositories/record/record_repository_impl.dart';
 import 'package:domain/repositories/user/user_repository.dart';
 import 'package:domain/repositories/user/user_repository_impl.dart';
+import 'package:domain/repositories/user_preferences/user_preferences_repository.dart';
+import 'package:domain/repositories/user_preferences/user_preferences_repository_impl.dart';
 import 'package:domain/use_cases/use_cases.dart';
 import 'package:local/local/core/dependency_injection/local_dependency_injection.dart';
 import 'package:remote/remote.dart';
@@ -20,6 +22,12 @@ class DomainDependencyInjection {
 
     getIt.registerFactory<RecordRepository>(
       () => RecordRepositoryImpl(
+        localDatasource: getIt(),
+      ),
+    );
+
+    getIt.registerFactory<UserPreferencesRepository>(
+      () => UserPreferencesRepositoryImpl(
         localDatasource: getIt(),
       ),
     );
@@ -57,6 +65,24 @@ class DomainDependencyInjection {
     getIt.registerFactory<DeleteRecord>(
       () => DeleteRecord(
         recordRepository: getIt(),
+      ),
+    );
+
+    getIt.registerFactory<GetUserPreferences>(
+      () => GetUserPreferences(
+        userPreferencesRepository: getIt(),
+      ),
+    );
+
+    getIt.registerFactory(
+      () => SaveUserPreferences(
+        userPreferencesRepository: getIt(),
+      ),
+    );
+
+    getIt.registerFactory(
+      () => DeleteUserPreferences(
+        userPreferencesRepository: getIt(),
       ),
     );
   }

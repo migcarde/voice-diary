@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:firebase_login/firebase_login_service.dart';
+import 'package:flutter/widgets.dart';
 import 'package:voice_diary/features/app/models/user_view_model.dart';
 
 part 'app_state.dart';
@@ -37,4 +38,10 @@ class AppCubit extends Cubit<AppState> {
       state.logout(),
     );
   }
+
+  void changeLanguage(Locale locale) => emit(
+        state.copyWith(
+          selectedLocale: locale,
+        ),
+      );
 }

@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/repositories/user/models/user_entity.dart';
+import 'package:domain/repositories/user_preferences/models/save_user_preferences_entity.dart';
 import 'package:firebase_login/firebase_login_service.dart';
 import 'package:firebase_login/models/firebase_auth_errors.dart';
 import 'package:firebase_login/models/firebase_user.dart';
@@ -17,10 +18,12 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit({
     required this.firebaseLoginService,
     required this.saveUser,
+    required this.saveUserPreferences,
   }) : super(const RegisterState());
 
   final FirebaseLoginService firebaseLoginService;
   final SaveUser saveUser;
+  final SaveUserPreferences saveUserPreferences;
 
   Future<void> register({
     required String email,
@@ -66,6 +69,12 @@ class RegisterCubit extends Cubit<RegisterState> {
         uid: user.uid,
         email: user.email,
         locale: Platform.localeName,
+      ),
+    );
+
+    saveUserPreferences(
+      SaveUserPreferencesEntity(
+        selectedLocale: Platform.localeName,
       ),
     );
 
