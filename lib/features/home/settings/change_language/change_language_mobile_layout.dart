@@ -21,11 +21,6 @@ class ChangeLanguageMobileLayout extends StatelessWidget {
       listener: (context, state) {
         if (state.status.isSuccess) {
           context.read<AppCubit>().changeLanguage(state.selectedLocale!);
-          AppSnackbar.show(
-            message: l10n.change_language_success,
-            type: AppSnackbarType.positive,
-            context: context,
-          );
           context.pop();
         } else if (state.status.isError) {
           AppSnackbar.show(

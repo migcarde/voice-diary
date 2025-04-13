@@ -13,6 +13,7 @@ class AppMobileLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppState>(
+      listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) => AppRouter.router.refresh(),
       buildWhen: (previous, current) =>
           previous.selectedLocale != current.selectedLocale,

@@ -29,7 +29,7 @@ class SettingsMobileLayout extends StatelessWidget {
         PrimaryButton(
           text: l10n.change_language,
           leftIcon: PhosphorIcons.globe(),
-          onTap: () => context.push(
+          onTap: () async => context.push(
             Paths.changeLanguage,
           ),
         ),

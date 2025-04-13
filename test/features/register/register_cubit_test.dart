@@ -4,6 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/repositories/user/models/user_entity.dart';
+import 'package:domain/repositories/user_preferences/models/save_user_preferences_entity.dart';
 import 'package:firebase_login/firebase_login_service.dart';
 import 'package:firebase_login/models/firebase_auth_errors.dart';
 import 'package:firebase_login/models/firebase_user.dart';
@@ -15,17 +16,22 @@ class FirebaseLoginServiceMock extends Mock implements FirebaseLoginService {}
 
 class SaveUserMock extends Mock implements SaveUser {}
 
+class SaveUserPreferencesMock extends Mock implements SaveUserPreferences {}
+
 void main() {
   late FirebaseLoginServiceMock firebaseLoginService;
   late SaveUserMock saveUser;
+  late SaveUserPreferencesMock saveUserPreferences;
   late RegisterCubit cubit;
 
   setUp(() {
     firebaseLoginService = FirebaseLoginServiceMock();
     saveUser = SaveUserMock();
+    saveUserPreferences = SaveUserPreferencesMock();
     cubit = RegisterCubit(
       firebaseLoginService: firebaseLoginService,
       saveUser: saveUser,
+      saveUserPreferences: saveUserPreferences,
     );
   });
 
@@ -57,6 +63,11 @@ void main() {
             .thenAnswer((_) async => Result.success(firebaseUser));
         when(() => saveUser(userEntity))
             .thenAnswer((_) async => Result.success(null));
+        when(() => saveUserPreferences(
+              SaveUserPreferencesEntity(
+                selectedLocale: Platform.localeName,
+              ),
+            )).thenAnswer((_) async => Result.success(null));
       },
       expect: () => const <RegisterState>[
         RegisterState(
