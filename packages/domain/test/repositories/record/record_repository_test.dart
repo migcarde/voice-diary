@@ -26,6 +26,7 @@ void main() {
     date: date,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
   final recordLocalEntityWithourId = RecordLocalEntity(
     id: 0,
@@ -33,6 +34,7 @@ void main() {
     date: date,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
   final recordEntity = RecordEntity(
     id: 1,
@@ -40,12 +42,14 @@ void main() {
     date: date,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
   final saveRecordEntity = SaveRecordEntity(
     title: 'Title',
     date: date,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
 
   group('Get all records', () {

@@ -24,6 +24,7 @@ void main() {
     date: date,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
 
   group('Get all records', () {

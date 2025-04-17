@@ -7,12 +7,14 @@ class RecordViewModel extends Equatable {
     required this.date,
     required this.path,
     required this.tags,
+    required this.transcription,
   });
 
   final String title;
   final DateTime date;
   final String path;
   final List<String> tags;
+  final String transcription;
 
   @override
   List<Object?> get props => [
@@ -29,5 +31,6 @@ extension RecordEntityExtensions on RecordEntity {
         date: date,
         path: path,
         tags: tags,
+        transcription: transcription,
       );
 }

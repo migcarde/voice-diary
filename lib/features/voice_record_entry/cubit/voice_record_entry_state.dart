@@ -19,24 +19,33 @@ class VoiceRecordEntryState extends Equatable {
     this.recordingDuration = Duration.zero,
     this.path = '',
     this.date,
+    this.recordingTranscription = '',
+    this.transcription = ';',
   });
 
   final VoiceRecordEntryStatus status;
   final Duration recordingDuration;
   final String path;
   final DateTime? date;
+  final String recordingTranscription;
+  final String transcription;
 
   VoiceRecordEntryState copyWith({
     VoiceRecordEntryStatus? status,
     Duration? recordingDuration,
     String? path,
     DateTime? date,
+    String? recordingTranscription,
+    String? transcription,
   }) =>
       VoiceRecordEntryState(
         status: status ?? this.status,
         recordingDuration: recordingDuration ?? this.recordingDuration,
         path: path ?? this.path,
         date: date ?? this.date,
+        recordingTranscription:
+            recordingTranscription ?? this.recordingTranscription,
+        transcription: transcription ?? this.transcription,
       );
 
   @override
@@ -45,5 +54,7 @@ class VoiceRecordEntryState extends Equatable {
         recordingDuration,
         path,
         date,
+        recordingTranscription,
+        transcription,
       ];
 }
