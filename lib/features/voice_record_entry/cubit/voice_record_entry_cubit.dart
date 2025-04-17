@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_diary/services/sound_recorder/sound_recoder_service.dart';
 
 part 'voice_record_entry_state.dart';
@@ -9,9 +10,11 @@ part 'voice_record_entry_state.dart';
 class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   VoiceRecordEntryCubit({
     required this.soundRecoderService,
+    required this.speechToText,
   }) : super(const VoiceRecordEntryState());
 
   final SoundRecoderService soundRecoderService;
+  final SpeechToText speechToText;
 
   Future<void> init() async {
     await _openRecorder();
@@ -33,6 +36,7 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   }
 
   Future<void> _openRecorder() async {
+    await speechToText.initialize();
     await soundRecoderService.open();
     await soundRecoderService.setSubscriptionDuration(
       const Duration(
@@ -65,6 +69,8 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
       file: file,
     );
 
+    await _initTranscription();
+
     emit(
       state.copyWith(
         status: VoiceRecordEntryStatus.recording,
@@ -74,17 +80,30 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   }
 
   Future<void> pauseRecording() async {
-    await soundRecoderService.pause();
+    Future.wait(
+      [
+        if (speechToText.isListening) speechToText.stop(),
+        soundRecoderService.pause(),
+      ],
+    );
 
     emit(
       state.copyWith(
         status: VoiceRecordEntryStatus.paused,
+        transcription: speechToText.isListening
+            ? '${state.transcription} ${state.recordingTranscription}'
+            : state.transcription,
       ),
     );
   }
 
   Future<void> resumeRecording() async {
-    await soundRecoderService.resume();
+    await Future.wait(
+      [
+        _initTranscription(),
+        soundRecoderService.resume(),
+      ],
+    );
 
     emit(
       state.copyWith(
@@ -94,11 +113,19 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   }
 
   Future<void> stopRecording() async {
-    await soundRecoderService.stop();
+    await Future.wait(
+      [
+        if (speechToText.isListening) speechToText.stop(),
+        soundRecoderService.stop(),
+      ],
+    );
 
     emit(
       state.copyWith(
         status: VoiceRecordEntryStatus.stopped,
+        transcription: speechToText.isListening
+            ? '${state.transcription} ${state.recordingTranscription}'
+            : state.transcription,
       ),
     );
   }
@@ -110,7 +137,23 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
   @override
   Future<void> close() {
     soundRecoderService.close();
+    speechToText.stop();
 
     return super.close();
+  }
+
+  Future<void> _initTranscription() async {
+    final locale = await speechToText.systemLocale();
+
+    await speechToText.listen(
+      localeId: locale?.localeId,
+      onResult: (result) {
+        emit(
+          state.copyWith(
+            recordingTranscription: result.recognizedWords,
+          ),
+        );
+      },
+    );
   }
 }

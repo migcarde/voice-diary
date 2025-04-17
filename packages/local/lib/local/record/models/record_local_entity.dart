@@ -10,6 +10,7 @@ class RecordLocalEntity extends Equatable {
     required this.date,
     required this.path,
     required this.tags,
+    required this.transcription,
   });
 
   @Id()
@@ -18,6 +19,7 @@ class RecordLocalEntity extends Equatable {
   final DateTime date;
   final String path;
   final List<String> tags;
+  final String transcription;
 
   @override
   List<Object?> get props => [
@@ -26,5 +28,6 @@ class RecordLocalEntity extends Equatable {
         date,
         path,
         tags,
+        transcription,
       ];
 }

@@ -7,12 +7,14 @@ class SaveRecordEntryViewModel extends Equatable {
     required this.date,
     required this.path,
     required this.tags,
+    required this.transcription,
   });
 
   final String title;
   final DateTime date;
   final String path;
   final List<String> tags;
+  final String transcription;
 
   @override
   List<Object?> get props => [
@@ -20,6 +22,7 @@ class SaveRecordEntryViewModel extends Equatable {
         date,
         path,
         tags,
+        transcription,
       ];
 
   SaveRecordEntity get entity => SaveRecordEntity(
@@ -27,6 +30,7 @@ class SaveRecordEntryViewModel extends Equatable {
         date: date,
         path: path,
         tags: tags,
+        transcription: transcription,
       );
 
   SaveRecordEntryViewModel copyWith({
@@ -34,11 +38,13 @@ class SaveRecordEntryViewModel extends Equatable {
     DateTime? date,
     String? path,
     List<String>? tags,
+    String? transcription,
   }) =>
       SaveRecordEntryViewModel(
         title: title ?? this.title,
         date: date ?? this.date,
         path: path ?? this.path,
         tags: tags ?? this.tags,
+        transcription: transcription ?? this.transcription,
       );
 }

@@ -42,6 +42,7 @@ dependencies:
   flutter_sound: ^9.25.4
   permission_handler: ^11.4.0
   clock: ^1.1.2
+  speech_to_text: ^7.0.0
 
 dev_dependencies:
   flutter_test:

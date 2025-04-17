@@ -33,6 +33,7 @@ void main() {
     date: today,
     path: 'Path',
     tags: [],
+    transcription: 'Transcription',
   );
 
   group('Initial state', () {
@@ -50,7 +51,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(
@@ -82,7 +83,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(
@@ -123,7 +124,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(
@@ -174,7 +175,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(
@@ -217,7 +218,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(
@@ -244,7 +245,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: SaveRecordEntryPage(

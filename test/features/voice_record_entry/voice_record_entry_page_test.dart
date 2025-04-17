@@ -67,7 +67,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -131,7 +131,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -180,7 +180,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -214,7 +214,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -248,7 +248,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -277,7 +277,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -324,7 +324,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           home: Scaffold(
             body: VoiceRecordEntryPage(),
@@ -365,7 +365,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.voiceRecordEntry,
@@ -427,7 +427,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -492,6 +492,7 @@ void main() {
         date: today,
         path: '',
         tags: [],
+        transcription: 'Transcription',
       );
       when(() => voiceRecordEntryCubit.state).thenReturn(
         VoiceRecordEntryState(
@@ -522,7 +523,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.voiceRecordEntry,

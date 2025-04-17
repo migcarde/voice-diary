@@ -78,7 +78,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -115,7 +115,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -172,7 +172,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -233,7 +233,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -322,7 +322,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -426,7 +426,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -550,7 +550,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,
@@ -654,7 +654,7 @@ void main() {
         MaterialApp.router(
           supportedLocales: AppLocalizations.supportedLocales,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('es'),
+          locale: Locale('en'),
           theme: AppTheme.mainTheme(),
           routerConfig: GoRouter(
             initialLocation: Paths.home,

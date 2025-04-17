@@ -2,6 +2,7 @@ import 'package:core/services/get_it_service.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_login/core/dependency_injection/firebase_login_dependency_injection.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_diary/features/app/cubit/app_cubit.dart';
 import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
@@ -22,6 +23,10 @@ class AppDependencyInjection {
 
     getIt.registerLazySingleton<FlutterSoundRecorder>(
       () => FlutterSoundRecorder(),
+    );
+
+    getIt.registerLazySingleton<SpeechToText>(
+      () => SpeechToText(),
     );
 
     getIt.registerLazySingleton<SoundRecoderService>(
@@ -53,6 +58,7 @@ class AppDependencyInjection {
     getIt.registerFactory<VoiceRecordEntryCubit>(
       () => VoiceRecordEntryCubit(
         soundRecoderService: getIt(),
+        speechToText: getIt(),
       ),
     );
 

@@ -3,19 +3,25 @@ import 'package:clock/clock.dart';
 import 'package:core/core.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_diary/features/voice_record_entry/cubit/voice_record_entry_cubit.dart';
 import 'package:voice_diary/services/sound_recorder/sound_recoder_service.dart';
 
 class SoundRecoderServiceMock extends Mock implements SoundRecoderService {}
 
+class SpeechToTextMock extends Mock implements SpeechToText {}
+
 void main() {
   late SoundRecoderServiceMock soundRecoderService;
+  late SpeechToTextMock speechToText;
   late VoiceRecordEntryCubit voiceRecordEntryCubit;
 
   setUp(() {
     soundRecoderService = SoundRecoderServiceMock();
+    speechToText = SpeechToTextMock();
     voiceRecordEntryCubit = VoiceRecordEntryCubit(
       soundRecoderService: soundRecoderService,
+      speechToText: speechToText,
     );
   });
 
@@ -32,6 +38,9 @@ void main() {
         when(() => soundRecoderService.open()).thenAnswer(
           (_) async => FlutterSoundRecorder(),
         );
+        when(() => speechToText.initialize()).thenAnswer(
+          (_) async => true,
+        );
         when(
           () => soundRecoderService.setSubscriptionDuration(
             const Duration(
@@ -41,6 +50,9 @@ void main() {
         ).thenAnswer((_) async {});
         when(() => soundRecoderService.close()).thenAnswer(
           (_) async {},
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
         );
       },
       expect: () => <VoiceRecordEntryState>[
@@ -63,6 +75,9 @@ void main() {
       ),
       setUp: () {
         when(() => soundRecoderService.close()).thenAnswer((_) async {});
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
+        );
       },
       expect: () => const <VoiceRecordEntryState>[
         VoiceRecordEntryState(
@@ -87,7 +102,25 @@ void main() {
           () => soundRecoderService.start(
               codec: Codec.aacMP4, file: '${today.toString()}.mp4'),
         ).thenAnswer((_) async {});
+        when(() => speechToText.systemLocale()).thenAnswer(
+          (_) async => LocaleName(
+            '1',
+            'Name',
+          ),
+        );
         when(() => soundRecoderService.close()).thenAnswer(
+          (_) async {},
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
+        );
+
+        when(
+          () => speechToText.listen(
+            localeId: any(named: 'localeId'),
+            onResult: any(named: 'onResult'),
+          ),
+        ).thenAnswer(
           (_) async {},
         );
       },
@@ -112,6 +145,12 @@ void main() {
         when(() => soundRecoderService.close()).thenAnswer(
           (_) async {},
         );
+        when(() => speechToText.isListening).thenAnswer(
+          (_) => false,
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
+        );
       },
       expect: () => <VoiceRecordEntryState>[
         VoiceRecordEntryState(
@@ -130,8 +169,25 @@ void main() {
         when(
           () => soundRecoderService.resume(),
         ).thenAnswer((_) async {});
+        when(() => speechToText.initialize()).thenAnswer(
+          (_) async => true,
+        );
+        when(() => speechToText.systemLocale()).thenAnswer(
+          (_) async => LocaleName('1', 'Name'),
+        );
+        when(
+          () => speechToText.listen(
+            localeId: any(named: 'localeId'),
+            onResult: any(named: 'onResult'),
+          ),
+        ).thenAnswer(
+          (_) async {},
+        );
         when(() => soundRecoderService.close()).thenAnswer(
           (_) async {},
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
         );
       },
       expect: () => <VoiceRecordEntryState>[
@@ -154,6 +210,12 @@ void main() {
         when(() => soundRecoderService.close()).thenAnswer(
           (_) async {},
         );
+        when(() => speechToText.isListening).thenAnswer(
+          (_) => false,
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
+        );
       },
       expect: () => <VoiceRecordEntryState>[
         VoiceRecordEntryState(
@@ -174,6 +236,12 @@ void main() {
         ).thenAnswer((_) async {});
         when(() => soundRecoderService.close()).thenAnswer(
           (_) async {},
+        );
+        when(() => speechToText.isListening).thenAnswer(
+          (_) => false,
+        );
+        when(() => speechToText.stop()).thenAnswer(
+          (_) async => true,
         );
       },
       seed: () => VoiceRecordEntryState(
