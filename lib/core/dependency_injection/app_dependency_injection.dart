@@ -6,6 +6,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_diary/features/app/cubit/app_cubit.dart';
 import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
+import 'package:voice_diary/features/home/records/records_filters/cubit/records_filters_cubit.dart';
 import 'package:voice_diary/features/home/settings/change_language/cubit/change_language_cubit.dart';
 import 'package:voice_diary/features/home/settings/cubit/settings_cubit.dart';
 import 'package:voice_diary/features/home/settings/reauthentication/cubit/reauthentication_cubit.dart';
@@ -96,6 +97,10 @@ class AppDependencyInjection {
         getUserPreferences: getIt(),
         saveUserPreferences: getIt(),
       ),
+    );
+
+    getIt.registerFactory<RecordsFiltersCubit>(
+      () => RecordsFiltersCubit(),
     );
   }
 }

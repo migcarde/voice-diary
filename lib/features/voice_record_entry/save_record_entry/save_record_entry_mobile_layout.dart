@@ -60,6 +60,7 @@ class SaveRecordEntryMobileLayout extends StatelessWidget {
                         .map(
                           (tag) => PrimaryChip(
                             text: tag,
+                            icon: PhosphorIcons.x(),
                             onTap: () => context
                                 .read<SaveRecordEntryCubit>()
                                 .removeTag(tag),
@@ -74,7 +75,7 @@ class SaveRecordEntryMobileLayout extends StatelessWidget {
                 top: AppDimens.m,
               ),
               child: Text(
-                l10n.base_on_your_record_we_recommend_these_tags,
+                l10n.set_tags_to_your_record,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.primaryColor,
                   fontWeight: FontWeight.bold,

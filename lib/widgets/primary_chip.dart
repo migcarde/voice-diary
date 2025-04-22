@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/core/container_decorators.dart';
 import 'package:voice_diary/extensions/build_context_extensions.dart';
@@ -10,10 +9,12 @@ class PrimaryChip extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
+    this.icon,
   });
 
   final String text;
   final VoidCallback onTap;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -38,15 +39,17 @@ class PrimaryChip extends StatelessWidget {
                 color: theme.primaryColor,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                left: AppDimens.s,
+            if (icon != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppDimens.s,
+                ),
+                child: Icon(
+                  icon,
+                  size: AppDimens.m,
+                  color: theme.primaryColor,
+                ),
               ),
-              child: Icon(
-                PhosphorIcons.x(),
-                color: theme.primaryColor,
-              ),
-            ),
           ],
         ),
       ),

@@ -63,9 +63,7 @@ void main() {
 
       expect(find.text(AppLocalizationsEn().title), findsOneWidget);
       expect(find.text(AppLocalizationsEn().tags), findsOneWidget);
-      expect(
-          find.text(
-              AppLocalizationsEn().base_on_your_record_we_recommend_these_tags),
+      expect(find.text(AppLocalizationsEn().set_tags_to_your_record),
           findsOneWidget);
       expect(find.text(AppLocalizationsEn().save), findsOneWidget);
     });
@@ -99,9 +97,7 @@ void main() {
 
       expect(find.text('Example'), findsOneWidget);
       expect(find.text(AppLocalizationsEn().tags), findsOneWidget);
-      expect(
-          find.text(
-              AppLocalizationsEn().base_on_your_record_we_recommend_these_tags),
+      expect(find.text(AppLocalizationsEn().set_tags_to_your_record),
           findsOneWidget);
       expect(find.text(AppLocalizationsEn().save), findsOneWidget);
     });
@@ -149,7 +145,7 @@ void main() {
       expect(find.widgetWithText(PrimaryChip, 'Example'), findsOneWidget);
       expect(
         find.text(
-          AppLocalizationsEn().base_on_your_record_we_recommend_these_tags,
+          AppLocalizationsEn().set_tags_to_your_record,
         ),
         findsOneWidget,
       );
@@ -197,7 +193,7 @@ void main() {
       expect(find.widgetWithText(PrimaryChip, 'Example'), findsOneWidget);
       expect(
         find.text(
-          AppLocalizationsEn().base_on_your_record_we_recommend_these_tags,
+          AppLocalizationsEn().set_tags_to_your_record,
         ),
         findsOneWidget,
       );

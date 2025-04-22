@@ -87,7 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tags => 'Tags';
 
   @override
-  String get base_on_your_record_we_recommend_these_tags => 'Base on your record, we recommend these tags';
+  String get set_tags_to_your_record => 'Set tags to your record';
 
   @override
   String get change_language => 'Change language';
@@ -124,4 +124,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get change_language_success => 'Change language success';
+
+  @override
+  String get filter_by_tag => 'Filter by tag';
+
+  @override
+  String get search_tag => 'Search tag';
+
+  @override
+  String get tap_a_tag_to_filter => 'Tap a tag to filter';
+
+  @override
+  String get no_tags_found => 'No tags found';
 }

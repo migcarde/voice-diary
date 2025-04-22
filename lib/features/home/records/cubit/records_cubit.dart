@@ -22,17 +22,44 @@ class RecordsCubit extends Cubit<RecordsState> {
     final result = await getAllRecords(NoParams());
 
     result.when(
-      (records) => emit(
-        state.copyWith(
-          status: records.isEmpty ? RecordsStatus.empty : RecordsStatus.data,
-          records: records.map((record) => record.viewModel).toList(),
-        ),
-      ),
+      (records) {
+        final recordsViewModel =
+            records.map((record) => record.viewModel).toList();
+
+        emit(
+          state.copyWith(
+            status: records.isEmpty ? RecordsStatus.empty : RecordsStatus.data,
+            records: recordsViewModel,
+            filteredRecords: recordsViewModel,
+            tags: records.expand((record) => record.tags).toSet(),
+          ),
+        );
+      },
       (failure) => emit(
         state.copyWith(
           status: RecordsStatus.error,
         ),
       ),
     );
+  }
+
+  void searchByTag(Set<String> tags) {
+    if (tags.isEmpty) {
+      emit(
+        state.copyWith(
+          filteredRecords: state.records,
+        ),
+      );
+    } else {
+      final filteredRecords = state.records
+          .where((record) => record.tags.any((tag) => tags.contains(tag)))
+          .toList();
+
+      emit(
+        state.copyWith(
+          filteredRecords: filteredRecords,
+        ),
+      );
+    }
   }
 }
