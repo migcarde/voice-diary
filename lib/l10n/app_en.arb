@@ -52,8 +52,8 @@
     "@title": {},
     "tags": "Tags",
     "@tags": {},
-    "base_on_your_record_we_recommend_these_tags": "Base on your record, we recommend these tags",
-    "@base_on_your_record_we_recommend_these_tags": {},
+    "set_tags_to_your_record": "Set tags to your record",
+    "@set_tags_to_your_record": {},
     "change_language": "Change language",
     "@change_language": {},
     "delete_account": "Delete account",
@@ -77,5 +77,13 @@
     "spanish": "Spanish",
     "@spanish": {},
     "change_language_success": "Change language success",
-    "@change_language_success": {}
+    "@change_language_success": {},
+    "filter_by_tag": "Filter by tag",
+    "@filter_by_tag": {},
+    "search_tag": "Search tag",
+    "@search_tag": {},
+    "tap_a_tag_to_filter": "Tap a tag to filter",
+    "@tap_a_tag_to_filter": {},
+    "no_tags_found": "No tags found",
+    "@no_tags_found": {}
 }

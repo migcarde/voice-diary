@@ -87,7 +87,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tags => 'Etiquetas';
 
   @override
-  String get base_on_your_record_we_recommend_these_tags => 'Te recomendamos estas etiquetas basadas en vuestras grabaciones';
+  String get set_tags_to_your_record => 'Añade etiquetas a tu grabación';
 
   @override
   String get change_language => 'Cambiar idioma';
@@ -124,4 +124,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get change_language_success => 'Se ha cambiado el lenguage';
+
+  @override
+  String get filter_by_tag => 'Filtra por etiqueta';
+
+  @override
+  String get search_tag => 'Buscar por etiqueta';
+
+  @override
+  String get tap_a_tag_to_filter => 'Pulsa una etiqueta para filtrar';
+
+  @override
+  String get no_tags_found => 'No se han encontrado etiquetas';
 }

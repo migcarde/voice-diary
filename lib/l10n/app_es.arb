@@ -52,8 +52,8 @@
     "@title": {},
     "tags": "Etiquetas",
     "@tags": {},
-    "base_on_your_record_we_recommend_these_tags": "Te recomendamos estas etiquetas basadas en vuestras grabaciones",
-    "@base_on_your_record_we_recommend_these_tags": {},
+    "set_tags_to_your_record": "Añade etiquetas a tu grabación",
+    "@set_tags_to_your_record": {},
     "change_language": "Cambiar idioma",
     "@change_language": {},
     "delete_account": "Borrar cuenta",
@@ -77,5 +77,13 @@
     "spanish": "Español",
     "@spanish": {},
     "change_language_success": "Se ha cambiado el lenguage",
-    "@change_language_success": {}
+    "@change_language_success": {},
+    "filter_by_tag": "Filtra por etiqueta",
+    "@filter_by_tag": {},
+    "search_tag": "Buscar por etiqueta",
+    "@search_tag": {},
+    "tap_a_tag_to_filter": "Pulsa una etiqueta para filtrar",
+    "@tap_a_tag_to_filter": {},
+    "no_tags_found": "No se han encontrado etiquetas",
+    "@no_tags_found": {}
 }

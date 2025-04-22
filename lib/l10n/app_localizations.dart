@@ -251,11 +251,11 @@ abstract class AppLocalizations {
   /// **'Tags'**
   String get tags;
 
-  /// No description provided for @base_on_your_record_we_recommend_these_tags.
+  /// No description provided for @set_tags_to_your_record.
   ///
   /// In en, this message translates to:
-  /// **'Base on your record, we recommend these tags'**
-  String get base_on_your_record_we_recommend_these_tags;
+  /// **'Set tags to your record'**
+  String get set_tags_to_your_record;
 
   /// No description provided for @change_language.
   ///
@@ -328,6 +328,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Change language success'**
   String get change_language_success;
+
+  /// No description provided for @filter_by_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by tag'**
+  String get filter_by_tag;
+
+  /// No description provided for @search_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'Search tag'**
+  String get search_tag;
+
+  /// No description provided for @tap_a_tag_to_filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a tag to filter'**
+  String get tap_a_tag_to_filter;
+
+  /// No description provided for @no_tags_found.
+  ///
+  /// In en, this message translates to:
+  /// **'No tags found'**
+  String get no_tags_found;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

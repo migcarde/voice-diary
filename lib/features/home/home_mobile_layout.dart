@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
-import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/records/records_page.dart';
 import 'package:voice_diary/features/home/settings/settings_page.dart';
-import 'package:voice_diary/routing/paths.dart';
 
 class HomeMobileLayout extends StatefulWidget {
   const HomeMobileLayout({super.key});
@@ -43,28 +39,12 @@ class _HomeMobileLayoutState extends State<HomeMobileLayout>
         }
       },
       child: SafeArea(
-        child: Stack(
+        child: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: _tabController,
           children: [
-            TabBarView(
-              physics: NeverScrollableScrollPhysics(),
-              controller: _tabController,
-              children: [
-                RecordsPage(),
-                SettingsPage(),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                onPressed: () => context.push(
-                  Paths.voiceRecordEntry,
-                ),
-                child: Icon(
-                  PhosphorIcons.funnelSimple(),
-                  size: AppDimens.l,
-                ),
-              ),
-            )
+            RecordsPage(),
+            SettingsPage(),
           ],
         ),
       ),
