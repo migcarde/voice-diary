@@ -5,4 +5,5 @@ class Paths {
   static const voiceRecordEntry = '/voiceRecordEntry';
   static const saveRecordEntry = '/saveVoiceRecordEntry';
   static const changeLanguage = '/changeLanguage';
+  static const voiceRecordDetails = '/voiceRecordDetails';
 }

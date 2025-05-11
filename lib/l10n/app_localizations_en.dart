@@ -136,4 +136,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get no_tags_found => 'No tags found';
+
+  @override
+  String get transcription => 'Transcription';
+
+  @override
+  String get edit => 'Edit';
+
+  @override
+  String get record_details => 'Record details';
 }

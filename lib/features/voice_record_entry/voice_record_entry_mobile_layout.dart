@@ -126,6 +126,7 @@ class VoiceRecordEntryMobileLayout extends StatelessWidget {
                           tags: [],
                           path: state.path,
                           transcription: state.transcription,
+                          duration: state.recordingDuration,
                         ),
                       );
                     }

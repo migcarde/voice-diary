@@ -21,21 +21,21 @@ void main() {
 
   final date = DateTime.now();
   final recordLocalEntity = RecordLocalEntity(
-    id: 1,
-    title: 'Title',
-    date: date,
-    path: 'Path',
-    tags: [],
-    transcription: 'Transcription',
-  );
+      id: 1,
+      title: 'Title',
+      date: date,
+      path: 'Path',
+      tags: [],
+      transcription: 'Transcription',
+      durationInSeconds: 1);
   final recordLocalEntityWithourId = RecordLocalEntity(
-    id: 0,
-    title: 'Title',
-    date: date,
-    path: 'Path',
-    tags: [],
-    transcription: 'Transcription',
-  );
+      id: 0,
+      title: 'Title',
+      date: date,
+      path: 'Path',
+      tags: [],
+      transcription: 'Transcription',
+      durationInSeconds: 1);
   final recordEntity = RecordEntity(
     id: 1,
     title: 'Title',
@@ -43,6 +43,7 @@ void main() {
     path: 'Path',
     tags: [],
     transcription: 'Transcription',
+    duration: Duration(seconds: 1),
   );
   final saveRecordEntity = SaveRecordEntity(
     title: 'Title',
@@ -50,6 +51,7 @@ void main() {
     path: 'Path',
     tags: [],
     transcription: 'Transcription',
+    duration: Duration(seconds: 1),
   );
 
   group('Get all records', () {

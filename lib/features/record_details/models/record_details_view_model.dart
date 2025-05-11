@@ -1,10 +1,9 @@
 import 'package:core/core.dart';
-import 'package:local/local.dart';
+import 'package:voice_diary/features/home/records/models/record_view_model.dart';
 
-class SaveRecordEntity extends Equatable {
-  const SaveRecordEntity({
+class RecordDetailsViewModel extends Equatable {
+  const RecordDetailsViewModel({
     required this.title,
-    required this.date,
     required this.path,
     required this.tags,
     required this.transcription,
@@ -12,7 +11,6 @@ class SaveRecordEntity extends Equatable {
   });
 
   final String title;
-  final DateTime date;
   final String path;
   final List<String> tags;
   final String transcription;
@@ -21,18 +19,18 @@ class SaveRecordEntity extends Equatable {
   @override
   List<Object?> get props => [
         title,
-        date,
         path,
         tags,
         transcription,
       ];
+}
 
-  RecordLocalEntity get localEntity => RecordLocalEntity(
+extension RecordViewModelExtensions on RecordViewModel {
+  RecordDetailsViewModel get recordDetailsViewModel => RecordDetailsViewModel(
         title: title,
-        date: date,
         path: path,
         tags: tags,
         transcription: transcription,
-        durationInSeconds: duration.inSeconds,
+        duration: duration,
       );
 }

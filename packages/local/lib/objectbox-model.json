@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:3059967523835835008",
-      "lastPropertyId": "6:7899709539417131387",
+      "lastPropertyId": "7:7514187124162917337",
       "name": "RecordLocalEntity",
       "properties": [
         {
@@ -38,6 +38,11 @@
           "id": "6:7899709539417131387",
           "name": "transcription",
           "type": 9
+        },
+        {
+          "id": "7:7514187124162917337",
+          "name": "durationInSeconds",
+          "type": 6
         }
       ],
       "relations": []

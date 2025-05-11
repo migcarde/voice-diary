@@ -493,6 +493,7 @@ void main() {
         path: '',
         tags: [],
         transcription: 'Transcription',
+        duration: Duration(seconds: 1),
       );
       when(() => voiceRecordEntryCubit.state).thenReturn(
         VoiceRecordEntryState(

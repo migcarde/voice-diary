@@ -85,5 +85,11 @@
     "tap_a_tag_to_filter": "Pulsa una etiqueta para filtrar",
     "@tap_a_tag_to_filter": {},
     "no_tags_found": "No se han encontrado etiquetas",
-    "@no_tags_found": {}
+    "@no_tags_found": {},
+    "transcription": "Transcripción",
+    "@transcription": {},
+    "edit": "Editar",
+    "@edit": {},
+    "record_details": "Detalles de la grabación",
+    "@record_details": {}
 }

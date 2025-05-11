@@ -23,7 +23,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 3059967523835835008),
       name: 'RecordLocalEntity',
-      lastPropertyId: const obx_int.IdUid(6, 7899709539417131387),
+      lastPropertyId: const obx_int.IdUid(7, 7514187124162917337),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -55,6 +55,11 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(6, 7899709539417131387),
             name: 'transcription',
             type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 7514187124162917337),
+            name: 'durationInSeconds',
+            type: 6,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -142,13 +147,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final tagsOffset = fbb.writeList(
               object.tags.map(fbb.writeString).toList(growable: false));
           final transcriptionOffset = fbb.writeString(object.transcription);
-          fbb.startTable(7);
+          fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.date.millisecondsSinceEpoch);
           fbb.addOffset(3, pathOffset);
           fbb.addOffset(4, tagsOffset);
           fbb.addOffset(5, transcriptionOffset);
+          fbb.addInt64(6, object.durationInSeconds);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -170,13 +176,16 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final transcriptionParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 14, '');
+          final durationInSecondsParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
           final object = RecordLocalEntity(
               id: idParam,
               title: titleParam,
               date: dateParam,
               path: pathParam,
               tags: tagsParam,
-              transcription: transcriptionParam);
+              transcription: transcriptionParam,
+              durationInSeconds: durationInSecondsParam);
 
           return object;
         }),
@@ -241,6 +250,10 @@ class RecordLocalEntity_ {
   /// See [RecordLocalEntity.transcription].
   static final transcription =
       obx.QueryStringProperty<RecordLocalEntity>(_entities[0].properties[5]);
+
+  /// See [RecordLocalEntity.durationInSeconds].
+  static final durationInSeconds =
+      obx.QueryIntegerProperty<RecordLocalEntity>(_entities[0].properties[6]);
 }
 
 /// [UserPreferencesLocalEntity] entity fields to define ObjectBox queries.

@@ -4,6 +4,7 @@ import 'package:firebase_login/core/dependency_injection/firebase_login_dependen
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:voice_diary/features/app/cubit/app_cubit.dart';
+import 'package:voice_diary/features/audio_player/cubit/audio_player_cubit.dart';
 import 'package:voice_diary/features/bottom_bar/cubit/bottom_bar_cubit.dart';
 import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
 import 'package:voice_diary/features/home/records/records_filters/cubit/records_filters_cubit.dart';
@@ -14,6 +15,8 @@ import 'package:voice_diary/features/login/cubit/login_cubit.dart';
 import 'package:voice_diary/features/register/cubit/register_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/cubit/voice_record_entry_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/cubit/save_record_entry_cubit.dart';
+import 'package:voice_diary/services/sound_player/sound_player_service.dart';
+import 'package:voice_diary/services/sound_player/sound_player_service_impl.dart';
 import 'package:voice_diary/services/sound_recorder/sound_recoder_service.dart';
 import 'package:voice_diary/services/sound_recorder/sound_recorder_service_impl.dart';
 
@@ -30,9 +33,19 @@ class AppDependencyInjection {
       () => SpeechToText(),
     );
 
+    getIt.registerLazySingleton<FlutterSoundPlayer>(
+      () => FlutterSoundPlayer(),
+    );
+
     getIt.registerLazySingleton<SoundRecoderService>(
       () => SoundRecorderServiceImpl(
         recorder: getIt(),
+      ),
+    );
+
+    getIt.registerLazySingleton<SoundPlayerService>(
+      () => SoundPlayerServiceImpl(
+        player: getIt(),
       ),
     );
 
@@ -101,6 +114,12 @@ class AppDependencyInjection {
 
     getIt.registerFactory<RecordsFiltersCubit>(
       () => RecordsFiltersCubit(),
+    );
+
+    getIt.registerFactory<AudioPlayerCubit>(
+      () => AudioPlayerCubit(
+        soundPlayerService: getIt(),
+      ),
     );
   }
 }

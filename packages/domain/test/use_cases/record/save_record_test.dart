@@ -23,6 +23,7 @@ void main() {
     path: 'Path',
     tags: [],
     transcription: 'Transcription',
+    duration: Duration(seconds: 1),
   );
 
   group('Save record', () {
