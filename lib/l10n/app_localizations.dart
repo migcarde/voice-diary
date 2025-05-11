@@ -352,6 +352,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No tags found'**
   String get no_tags_found;
+
+  /// No description provided for @transcription.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcription'**
+  String get transcription;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @record_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Record details'**
+  String get record_details;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

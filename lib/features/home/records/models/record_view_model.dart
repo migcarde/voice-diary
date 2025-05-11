@@ -8,6 +8,7 @@ class RecordViewModel extends Equatable {
     required this.path,
     required this.tags,
     required this.transcription,
+    required this.duration,
   });
 
   final String title;
@@ -15,6 +16,7 @@ class RecordViewModel extends Equatable {
   final String path;
   final List<String> tags;
   final String transcription;
+  final Duration duration;
 
   @override
   List<Object?> get props => [
@@ -22,6 +24,7 @@ class RecordViewModel extends Equatable {
         date,
         path,
         tags,
+        duration,
       ];
 }
 
@@ -32,5 +35,6 @@ extension RecordEntityExtensions on RecordEntity {
         path: path,
         tags: tags,
         transcription: transcription,
+        duration: duration,
       );
 }

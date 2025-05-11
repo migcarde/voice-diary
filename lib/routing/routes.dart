@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:voice_diary/features/home/home_page.dart';
 import 'package:voice_diary/features/home/settings/change_language/change_language_page.dart';
 import 'package:voice_diary/features/login/login_page.dart';
+import 'package:voice_diary/features/record_details/models/record_details_view_model.dart';
+import 'package:voice_diary/features/record_details/record_details_page.dart';
 import 'package:voice_diary/features/register/register_page.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/models/save_record_entry_view_model.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/save_record_entry_page.dart';
@@ -35,6 +37,17 @@ class Routes {
         GoRoute(
           path: Paths.changeLanguage,
           builder: (context, state) => ChangeLanguagePage(),
+        ),
+        GoRoute(
+          path: Paths.voiceRecordDetails,
+          builder: (context, state) {
+            final recordDetailsViewModel =
+                state.extra! as RecordDetailsViewModel;
+
+            return RecordDetailsPage(
+              recordDetailsViewModel: recordDetailsViewModel,
+            );
+          },
         ),
       ];
 }

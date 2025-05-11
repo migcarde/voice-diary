@@ -85,5 +85,11 @@
     "tap_a_tag_to_filter": "Tap a tag to filter",
     "@tap_a_tag_to_filter": {},
     "no_tags_found": "No tags found",
-    "@no_tags_found": {}
+    "@no_tags_found": {},
+    "transcription": "Transcription",
+    "@transcription": {},
+    "edit": "Edit",
+    "@edit": {},
+    "record_details": "Record details",
+    "@record_details": {}
 }

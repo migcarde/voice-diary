@@ -9,6 +9,7 @@ class RecordEntity extends Equatable {
     required this.path,
     required this.tags,
     required this.transcription,
+    required this.duration,
   });
 
   final int id;
@@ -17,6 +18,7 @@ class RecordEntity extends Equatable {
   final String path;
   final List<String> tags;
   final String transcription;
+  final Duration duration;
 
   @override
   List<Object?> get props => [
@@ -25,6 +27,7 @@ class RecordEntity extends Equatable {
         date,
         path,
         tags,
+        duration,
       ];
 
   RecordLocalEntity get localEntity => RecordLocalEntity(
@@ -34,6 +37,7 @@ class RecordEntity extends Equatable {
         path: path,
         tags: tags,
         transcription: transcription,
+        durationInSeconds: duration.inSeconds,
       );
 }
 
@@ -45,5 +49,8 @@ extension RecordLcalEntityExtensions on RecordLocalEntity {
         path: path,
         tags: tags,
         transcription: transcription,
+        duration: Duration(
+          seconds: durationInSeconds,
+        ),
       );
 }

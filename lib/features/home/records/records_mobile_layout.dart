@@ -1,13 +1,16 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/features/home/records/cubit/records_cubit.dart';
 import 'package:voice_diary/features/home/records/records_filters/cubit/records_filters_cubit.dart';
 import 'package:voice_diary/features/home/records/widgets/record_tile.dart';
 import 'package:voice_diary/features/home/records/records_filters/records_filters.dart';
+import 'package:voice_diary/features/record_details/models/record_details_view_model.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
+import 'package:voice_diary/routing/paths.dart';
 import 'package:voice_diary/widgets/message_screen.dart';
 
 class RecordsMobileLayout extends StatelessWidget {
@@ -37,8 +40,15 @@ class RecordsMobileLayout extends StatelessWidget {
                   separatorBuilder: (context, index) => const SizedBox(
                     height: AppDimens.m,
                   ),
-                  itemBuilder: (context, index) => RecordTile(
-                    recordViewModel: state.filteredRecords[index],
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () => context.push(
+                      Paths.voiceRecordDetails,
+                      extra:
+                          state.filteredRecords[index].recordDetailsViewModel,
+                    ),
+                    child: RecordTile(
+                      recordViewModel: state.filteredRecords[index],
+                    ),
                   ),
                 ),
             },

@@ -25,6 +25,7 @@ void main() {
     path: 'path',
     tags: [],
     transcription: 'Transcription',
+    duration: Duration(seconds: 1),
   );
 
   group('Init', () {
