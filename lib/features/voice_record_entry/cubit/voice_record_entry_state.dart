@@ -20,7 +20,7 @@ class VoiceRecordEntryState extends Equatable {
     this.path = '',
     this.date,
     this.recordingTranscription = '',
-    this.transcription = ';',
+    this.transcription = '',
   });
 
   final VoiceRecordEntryStatus status;
