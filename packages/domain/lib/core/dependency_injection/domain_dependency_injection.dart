@@ -68,6 +68,12 @@ class DomainDependencyInjection {
       ),
     );
 
+    getIt.registerFactory<UpdateRecord>(
+      () => UpdateRecord(
+        recordRepository: getIt(),
+      ),
+    );
+
     getIt.registerFactory<GetUserPreferences>(
       () => GetUserPreferences(
         userPreferencesRepository: getIt(),

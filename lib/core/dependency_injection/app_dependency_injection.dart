@@ -12,6 +12,8 @@ import 'package:voice_diary/features/home/settings/change_language/cubit/change_
 import 'package:voice_diary/features/home/settings/cubit/settings_cubit.dart';
 import 'package:voice_diary/features/home/settings/reauthentication/cubit/reauthentication_cubit.dart';
 import 'package:voice_diary/features/login/cubit/login_cubit.dart';
+import 'package:voice_diary/features/record_details/cubit/record_details_cubit.dart';
+import 'package:voice_diary/features/record_details/edit_record_details/cubit/edit_record_details_cubit.dart';
 import 'package:voice_diary/features/register/cubit/register_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/cubit/voice_record_entry_cubit.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/cubit/save_record_entry_cubit.dart';
@@ -119,6 +121,16 @@ class AppDependencyInjection {
     getIt.registerFactory<AudioPlayerCubit>(
       () => AudioPlayerCubit(
         soundPlayerService: getIt(),
+      ),
+    );
+
+    getIt.registerFactory<RecordDetailsCubit>(
+      () => RecordDetailsCubit(),
+    );
+
+    getIt.registerFactory<EditRecordDetailsCubit>(
+      () => EditRecordDetailsCubit(
+        updateRecord: getIt(),
       ),
     );
   }

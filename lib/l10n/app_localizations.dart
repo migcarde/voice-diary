@@ -370,6 +370,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Record details'**
   String get record_details;
+
+  /// No description provided for @record_updated_successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Record updated successfully'**
+  String get record_updated_successfully;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

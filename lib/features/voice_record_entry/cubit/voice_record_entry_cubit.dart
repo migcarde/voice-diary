@@ -90,7 +90,10 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
     emit(
       state.copyWith(
         status: VoiceRecordEntryStatus.paused,
-        transcription: '${state.transcription} ${state.recordingTranscription}',
+        transcription: (state.transcription.isEmpty &&
+                state.recordingTranscription.isEmpty)
+            ? ''
+            : '${state.transcription} ${state.recordingTranscription}',
       ),
     );
   }
@@ -120,7 +123,10 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
     emit(
       state.copyWith(
         status: VoiceRecordEntryStatus.stopped,
-        transcription: '${state.transcription} ${state.recordingTranscription}',
+        transcription: (state.transcription.isEmpty &&
+                state.recordingTranscription.isEmpty)
+            ? ''
+            : '${state.transcription} ${state.recordingTranscription}',
       ),
     );
   }

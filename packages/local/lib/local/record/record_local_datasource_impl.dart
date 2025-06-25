@@ -22,4 +22,8 @@ class RecordLocalDatasourceImpl implements RecordLocalDatasource {
   @override
   Future<void> saveRecord(RecordLocalEntity record) async =>
       await localDatasource.save<RecordLocalEntity>(record);
+
+  @override
+  Future<void> editRecord(RecordLocalEntity record) async =>
+      await localDatasource.put<RecordLocalEntity>(record);
 }

@@ -3,6 +3,7 @@ import 'package:domain/repositories/record/models/record_entity.dart';
 
 class RecordViewModel extends Equatable {
   const RecordViewModel({
+    required this.id,
     required this.title,
     required this.date,
     required this.path,
@@ -11,6 +12,7 @@ class RecordViewModel extends Equatable {
     required this.duration,
   });
 
+  final int id;
   final String title;
   final DateTime date;
   final String path;
@@ -20,6 +22,7 @@ class RecordViewModel extends Equatable {
 
   @override
   List<Object?> get props => [
+        id,
         title,
         date,
         path,
@@ -30,6 +33,7 @@ class RecordViewModel extends Equatable {
 
 extension RecordEntityExtensions on RecordEntity {
   RecordViewModel get viewModel => RecordViewModel(
+        id: id,
         title: title,
         date: date,
         path: path,

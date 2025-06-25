@@ -145,4 +145,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get record_details => 'Detalles de la grabación';
+
+  @override
+  String get record_updated_successfully => 'Grabación actualizada';
 }

@@ -6,4 +6,5 @@ abstract class RecordRepository {
   Future<Result<void>> saveRecord(SaveRecordEntity record);
   Future<Result<void>> deleteRecord(int id);
   Future<Result<List<RecordEntity>>> getRecords();
+  Future<Result<void>> updateRecord(RecordEntity record);
 }

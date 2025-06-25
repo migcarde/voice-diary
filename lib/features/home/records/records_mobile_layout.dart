@@ -20,6 +20,7 @@ class RecordsMobileLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return BlocBuilder<RecordsCubit, RecordsState>(
+      bloc: context.read<RecordsCubit>()..init(),
       builder: (context, state) {
         return Stack(
           children: [
@@ -41,11 +42,17 @@ class RecordsMobileLayout extends StatelessWidget {
                     height: AppDimens.m,
                   ),
                   itemBuilder: (context, index) => GestureDetector(
-                    onTap: () => context.push(
-                      Paths.voiceRecordDetails,
-                      extra:
-                          state.filteredRecords[index].recordDetailsViewModel,
-                    ),
+                    onTap: () async {
+                      final refresh = await context.push(
+                        Paths.voiceRecordDetails,
+                        extra:
+                            state.filteredRecords[index].recordDetailsViewModel,
+                      );
+
+                      if (refresh == true && context.mounted) {
+                        context.read<RecordsCubit>().init();
+                      }
+                    },
                     child: RecordTile(
                       recordViewModel: state.filteredRecords[index],
                     ),

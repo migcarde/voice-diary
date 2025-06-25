@@ -91,5 +91,7 @@
     "edit": "Editar",
     "@edit": {},
     "record_details": "Detalles de la grabación",
-    "@record_details": {}
+    "@record_details": {},
+    "record_updated_successfully": "Grabación actualizada",
+    "@record_updated_successfully": {}
 }

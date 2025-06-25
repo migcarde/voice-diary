@@ -149,7 +149,7 @@ void main() {
           .called(1);
     });
 
-    test('Success', () async {
+    test('Failure', () async {
       // Given
       when(() => recordLocalDatasource.deleteRecord(recordLocalEntity.id))
           .thenThrow(Exception());
@@ -160,6 +160,38 @@ void main() {
       // Then
       expect(result, isA<Failure>());
       verify(() => recordLocalDatasource.deleteRecord(recordLocalEntity.id))
+          .called(1);
+    });
+  });
+
+  group('Update record', () {
+    test('Success', () async {
+      // Given
+      when(() => recordLocalDatasource.editRecord(recordLocalEntity))
+          .thenAnswer(
+        (_) async {},
+      );
+
+      // When
+      final result = await recordRepository.updateRecord(recordEntity);
+
+      // Then
+      expect(result, isA<Success>());
+      verify(() => recordLocalDatasource.editRecord(recordLocalEntity))
+          .called(1);
+    });
+
+    test('Failure', () async {
+      // Given
+      when(() => recordLocalDatasource.editRecord(recordLocalEntity))
+          .thenThrow(Exception());
+
+      // When
+      final result = await recordRepository.updateRecord(recordEntity);
+
+      // Then
+      expect(result, isA<Failure>());
+      verify(() => recordLocalDatasource.editRecord(recordLocalEntity))
           .called(1);
     });
   });
