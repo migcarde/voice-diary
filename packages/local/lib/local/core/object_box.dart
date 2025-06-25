@@ -5,4 +5,5 @@ abstract class ObjectBox {
   Future<T?> get<T>(int id);
   Future<void> removeAll<T>();
   Future<void> remove<T>(int id);
+  Future<void> put<T>(T localEntity);
 }

@@ -44,4 +44,15 @@ class RecordRepositoryImpl implements RecordRepository {
       return Result.failure(e);
     }
   }
+
+  @override
+  Future<Result<void>> updateRecord(RecordEntity record) async {
+    try {
+      await localDatasource.editRecord(record.localEntity);
+
+      return Result.success(null);
+    } catch (e) {
+      return Result.failure(e);
+    }
+  }
 }

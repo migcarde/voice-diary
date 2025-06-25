@@ -58,4 +58,11 @@ class ObjectBoxImpl implements ObjectBox {
 
     await box?.removeAsync(id);
   }
+
+  @override
+  Future<void> put<T>(T localEntity) async {
+    final box = store?.box<T>();
+
+    await box?.putAsync(localEntity);
+  }
 }

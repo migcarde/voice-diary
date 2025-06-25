@@ -91,5 +91,7 @@
     "edit": "Edit",
     "@edit": {},
     "record_details": "Record details",
-    "@record_details": {}
+    "@record_details": {},
+    "record_updated_successfully": "Record updated successfully",
+    "@record_updated_successfully": {}
 }

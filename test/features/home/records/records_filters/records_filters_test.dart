@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -65,14 +66,17 @@ void main() {
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(
-        MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('en'),
-          theme: AppTheme.mainTheme(),
-          routerConfig: GoRouter(
-            initialLocation: Paths.home,
-            routes: Routes.list,
+        BlocProvider(
+          create: (context) => getIt<RecordsCubit>(),
+          child: MaterialApp.router(
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Locale('en'),
+            theme: AppTheme.mainTheme(),
+            routerConfig: GoRouter(
+              initialLocation: Paths.home,
+              routes: Routes.list,
+            ),
           ),
         ),
       );
@@ -116,14 +120,17 @@ void main() {
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(
-        MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('en'),
-          theme: AppTheme.mainTheme(),
-          routerConfig: GoRouter(
-            initialLocation: Paths.home,
-            routes: Routes.list,
+        BlocProvider(
+          create: (context) => getIt<RecordsCubit>(),
+          child: MaterialApp.router(
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Locale('en'),
+            theme: AppTheme.mainTheme(),
+            routerConfig: GoRouter(
+              initialLocation: Paths.home,
+              routes: Routes.list,
+            ),
           ),
         ),
       );
@@ -165,14 +172,17 @@ void main() {
       when(() => recordsFiltersCubit.addTag('tag1')).thenAnswer((_) async {});
 
       await tester.pumpWidget(
-        MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('en'),
-          theme: AppTheme.mainTheme(),
-          routerConfig: GoRouter(
-            initialLocation: Paths.home,
-            routes: Routes.list,
+        BlocProvider(
+          create: (context) => getIt<RecordsCubit>(),
+          child: MaterialApp.router(
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Locale('en'),
+            theme: AppTheme.mainTheme(),
+            routerConfig: GoRouter(
+              initialLocation: Paths.home,
+              routes: Routes.list,
+            ),
           ),
         ),
       );
@@ -213,14 +223,17 @@ void main() {
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(
-        MaterialApp.router(
-          supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          locale: Locale('en'),
-          theme: AppTheme.mainTheme(),
-          routerConfig: GoRouter(
-            initialLocation: Paths.home,
-            routes: Routes.list,
+        BlocProvider(
+          create: (context) => getIt<RecordsCubit>(),
+          child: MaterialApp.router(
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            locale: Locale('en'),
+            theme: AppTheme.mainTheme(),
+            routerConfig: GoRouter(
+              initialLocation: Paths.home,
+              routes: Routes.list,
+            ),
           ),
         ),
       );

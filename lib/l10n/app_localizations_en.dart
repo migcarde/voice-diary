@@ -145,4 +145,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get record_details => 'Record details';
+
+  @override
+  String get record_updated_successfully => 'Record updated successfully';
 }

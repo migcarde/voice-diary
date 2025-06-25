@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:voice_diary/core/app_theme.dart';
 import 'package:voice_diary/features/audio_player/cubit/audio_player_cubit.dart';
+import 'package:voice_diary/features/record_details/cubit/record_details_cubit.dart';
 import 'package:voice_diary/features/record_details/models/record_details_view_model.dart';
 import 'package:voice_diary/features/record_details/record_details_page.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
@@ -13,10 +14,14 @@ class MockAudioPlayerCubit extends MockCubit<AudioPlayerState>
 
 void main() {
   late MockAudioPlayerCubit audioPlayerCubit;
+  final today = DateTime.now();
   setUp(() {
     audioPlayerCubit = MockAudioPlayerCubit();
     getIt.registerFactory<AudioPlayerCubit>(
       () => audioPlayerCubit,
+    );
+    getIt.registerFactory<RecordDetailsCubit>(
+      () => RecordDetailsCubit(),
     );
   });
   testWidgets('show record details page', (WidgetTester tester) async {
@@ -40,6 +45,8 @@ void main() {
         theme: AppTheme.mainTheme(),
         home: RecordDetailsPage(
           recordDetailsViewModel: RecordDetailsViewModel(
+            id: 1,
+            date: today,
             title: 'title',
             path: 'path',
             tags: ['tag'],
