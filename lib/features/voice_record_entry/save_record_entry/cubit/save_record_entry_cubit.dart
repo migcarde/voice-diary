@@ -21,11 +21,12 @@ class SaveRecordEntryCubit extends Cubit<SaveRecordEntryState> {
   Future<void> save(String title) async {
     emit(
       state.copyWith(
-        status: SaveRecordEntryStatus.loading,
+        status: title.isEmpty ? null : SaveRecordEntryStatus.loading,
+        titleRequiredError: title.isEmpty,
       ),
     );
 
-    if (state.viewModel != null) {
+    if (state.viewModel != null && title.isNotEmpty) {
       final result = await saveRecord(
         state.viewModel!.copyWith(title: title).entity,
       );
@@ -34,11 +35,13 @@ class SaveRecordEntryCubit extends Cubit<SaveRecordEntryState> {
         (_) => emit(
           state.copyWith(
             status: SaveRecordEntryStatus.success,
+            titleRequiredError: false,
           ),
         ),
         (_) => emit(
           state.copyWith(
             status: SaveRecordEntryStatus.failure,
+            titleRequiredError: false,
           ),
         ),
       );

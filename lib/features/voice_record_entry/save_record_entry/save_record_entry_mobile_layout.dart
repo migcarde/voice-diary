@@ -34,6 +34,7 @@ class SaveRecordEntryMobileLayout extends StatelessWidget {
             BaseTextField(
               controller: titleController,
               hint: l10n.title,
+              errorText: state.titleRequiredError ? l10n.required_field : null,
             ),
             Padding(
               padding: const EdgeInsets.only(

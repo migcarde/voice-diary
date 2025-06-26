@@ -263,5 +263,31 @@ void main() {
         ),
       );
     });
+
+    testWidgets('Show required field error', (WidgetTester tester) async {
+      when(() => saveRecordEntryCubit.state).thenReturn(
+        SaveRecordEntryState(
+            status: SaveRecordEntryStatus.initial, titleRequiredError: true),
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          supportedLocales: AppLocalizations.supportedLocales,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          locale: Locale('en'),
+          theme: AppTheme.mainTheme(),
+          home: Scaffold(
+            body: SaveRecordEntryPage(
+              viewModel: viewModel,
+            ),
+          ),
+        ),
+      );
+
+      expect(
+        find.text(AppLocalizationsEn().required_field),
+        findsOneWidget,
+      );
+    });
   });
 }
