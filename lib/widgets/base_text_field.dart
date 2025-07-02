@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:voice_diary/core/app_dimens.dart';
+import 'package:voice_diary/extensions/build_context_extensions.dart';
 import 'package:voice_diary/widgets/click_detector.dart';
 
 enum BaseTextFieldType {
@@ -17,7 +18,7 @@ class BaseTextField extends StatelessWidget {
     this.icon,
     this.errorText,
     this.controller,
-    this.type = BaseTextFieldType.normal,
+    this.textType = BaseTextFieldType.normal,
     this.onSubmitted,
     this.onTapIcon,
   });
@@ -28,17 +29,19 @@ class BaseTextField extends StatelessWidget {
   final IconData? icon;
   final String? errorText;
   final TextEditingController? controller;
-  final BaseTextFieldType type;
+  final BaseTextFieldType textType;
   final Function(String)? onSubmitted;
   final VoidCallback? onTapIcon;
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.theme;
     return TextField(
       controller: controller,
-      obscureText: type.isPassword,
-      enableSuggestions: !type.isPassword,
-      autocorrect: !type.isPassword,
+      style: theme.textTheme.bodyLarge,
+      obscureText: textType.isPassword,
+      enableSuggestions: !textType.isPassword,
+      autocorrect: !textType.isPassword,
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
         hintText: hint,
@@ -47,7 +50,7 @@ class BaseTextField extends StatelessWidget {
           onTap: onTapIcon ?? () {},
           child: Icon(
             icon,
-            color: Theme.of(context).primaryColor,
+            color: theme.primaryColor,
           ),
         ),
         border: const OutlineInputBorder(
@@ -59,7 +62,7 @@ class BaseTextField extends StatelessWidget {
           ),
         ),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: theme.colorScheme.primaryContainer,
         errorText: errorText,
         errorMaxLines: 6,
       ),

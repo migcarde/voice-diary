@@ -906,3 +906,5 @@ pubspec.lock
 pubspec.lock
 .env
 lib/env/env.g.dart
+firebase.json
+lib/l10n/app_localizations_en.dart

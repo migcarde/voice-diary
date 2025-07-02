@@ -45,5 +45,13 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+			<string>audio</string>
+	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>MyApp uses speech recognition to convert your speech to text.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>MyApp uses the microphone to record your speech and convert it to text.</string>
 </dict>
 </plist>
