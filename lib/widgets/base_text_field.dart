@@ -21,6 +21,7 @@ class BaseTextField extends StatelessWidget {
     this.textType = BaseTextFieldType.normal,
     this.onSubmitted,
     this.onTapIcon,
+    this.keyboardType = TextInputType.text,
   });
 
   final String hint;
@@ -32,12 +33,15 @@ class BaseTextField extends StatelessWidget {
   final BaseTextFieldType textType;
   final Function(String)? onSubmitted;
   final VoidCallback? onTapIcon;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;
     return TextField(
+      maxLines: keyboardType == TextInputType.multiline ? null : 1,
       controller: controller,
+      keyboardType: keyboardType,
       style: theme.textTheme.bodyLarge,
       obscureText: textType.isPassword,
       enableSuggestions: !textType.isPassword,

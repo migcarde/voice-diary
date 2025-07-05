@@ -54,68 +54,77 @@ class EditRecordDetailsMobileLayout extends StatelessWidget {
       builder: (context, state) {
         return Stack(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                BaseTextField(
-                  controller: titleController,
-                  hint: l10n.title,
-                  errorText:
-                      state.hasTitleRequiredError ? l10n.required_field : null,
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: AppDimens.xl,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BaseTextField(
+                      controller: titleController,
+                      hint: l10n.title,
+                      errorText: state.hasTitleRequiredError
+                          ? l10n.required_field
+                          : null,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppDimens.m,
+                      ),
+                      child: BaseTextField(
+                        controller: tagsController,
+                        hint: l10n.tags,
+                        icon: PhosphorIcons.plus(),
+                        onTapIcon: () => context
+                            .read<EditRecordDetailsCubit>()
+                            .addTag(tagsController.text),
+                        onSubmitted: (_) => context
+                            .read<EditRecordDetailsCubit>()
+                            .addTag(tagsController.text),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppDimens.s,
+                      ),
+                      child: Wrap(
+                        alignment: WrapAlignment.start,
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        runAlignment: WrapAlignment.start,
+                        spacing: AppDimens.s,
+                        runSpacing: AppDimens.s,
+                        children: state.editRecordDetailsViewModel?.tags
+                                .map(
+                                  (tag) => PrimaryChip(
+                                    text: tag,
+                                    icon: PhosphorIcons.x(),
+                                    onTap: () => context
+                                        .read<EditRecordDetailsCubit>()
+                                        .removeTag(tag),
+                                  ),
+                                )
+                                .toList() ??
+                            [],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: AppDimens.m,
+                      ),
+                      child: BaseTextField(
+                        controller: transcriptionController,
+                        hint: l10n.transcription,
+                        errorText: state.hasTranscriptionRequiredError
+                            ? l10n.required_field
+                            : null,
+                        keyboardType: TextInputType.multiline,
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppDimens.m,
-                  ),
-                  child: BaseTextField(
-                    controller: tagsController,
-                    hint: l10n.tags,
-                    icon: PhosphorIcons.plus(),
-                    onTapIcon: () => context
-                        .read<EditRecordDetailsCubit>()
-                        .addTag(tagsController.text),
-                    onSubmitted: (_) => context
-                        .read<EditRecordDetailsCubit>()
-                        .addTag(tagsController.text),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppDimens.s,
-                  ),
-                  child: Wrap(
-                    alignment: WrapAlignment.start,
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    runAlignment: WrapAlignment.start,
-                    spacing: AppDimens.s,
-                    runSpacing: AppDimens.s,
-                    children: state.editRecordDetailsViewModel?.tags
-                            .map(
-                              (tag) => PrimaryChip(
-                                text: tag,
-                                icon: PhosphorIcons.x(),
-                                onTap: () => context
-                                    .read<EditRecordDetailsCubit>()
-                                    .removeTag(tag),
-                              ),
-                            )
-                            .toList() ??
-                        [],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppDimens.m,
-                  ),
-                  child: BaseTextField(
-                    controller: transcriptionController,
-                    hint: l10n.transcription,
-                    errorText: state.hasTranscriptionRequiredError
-                        ? l10n.required_field
-                        : null,
-                  ),
-                ),
-              ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
