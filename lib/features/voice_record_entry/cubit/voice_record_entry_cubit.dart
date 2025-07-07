@@ -94,6 +94,7 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
                 state.recordingTranscription.isEmpty)
             ? ''
             : '${state.transcription} ${state.recordingTranscription}',
+        recordingTranscription: '',
       ),
     );
   }
@@ -127,6 +128,7 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
                 state.recordingTranscription.isEmpty)
             ? ''
             : '${state.transcription} ${state.recordingTranscription}',
+        recordingTranscription: '',
       ),
     );
   }
