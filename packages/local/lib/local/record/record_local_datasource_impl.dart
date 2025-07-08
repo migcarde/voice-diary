@@ -10,7 +10,8 @@ class RecordLocalDatasourceImpl implements RecordLocalDatasource {
   final ObjectBox localDatasource;
 
   @override
-  Future<void> deleteRecord(int id) async => await localDatasource.remove(id);
+  Future<void> deleteRecord(int id) async =>
+      await localDatasource.remove<RecordLocalEntity>(id);
 
   @override
   Future<List<RecordLocalEntity>> getRecords() async {

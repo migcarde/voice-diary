@@ -8,6 +8,7 @@ class DeleteRecord implements BaseUseCase<void, int> {
   });
 
   final RecordRepository recordRepository;
+
   @override
   Future<Result<void>> call(int params) async =>
       recordRepository.deleteRecord(params);
