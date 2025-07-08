@@ -10,7 +10,7 @@ enum AppSnackbarType {
 
     switch (this) {
       case AppSnackbarType.positive:
-        return theme.colorScheme.primaryContainer;
+        return theme.colorScheme.tertiary;
       case AppSnackbarType.negative:
         return theme.colorScheme.error;
     }

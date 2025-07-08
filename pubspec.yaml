@@ -1,5 +1,5 @@
 name: voice_diary
-description: "A new Flutter project."
+description: "Voice Diary helps you to easily record and manage your voice notes."
 publish_to: 'none'
 version: 0.1.0
 
@@ -44,6 +44,7 @@ dependencies:
   clock: ^1.1.2
   speech_to_text: ^7.0.0
   flutter_launcher_icons: ^0.14.4
+  loader_overlay: ^5.0.0
 
 dev_dependencies:
   flutter_test:

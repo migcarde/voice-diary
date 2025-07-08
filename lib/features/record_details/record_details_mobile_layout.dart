@@ -2,6 +2,8 @@ import 'package:core/services/get_it_service.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:voice_diary/core/app_dimens.dart';
 import 'package:voice_diary/core/container_decorators.dart';
 import 'package:voice_diary/extensions/build_context_extensions.dart';
@@ -9,6 +11,8 @@ import 'package:voice_diary/features/audio_player/audio_player.dart';
 import 'package:voice_diary/features/audio_player/cubit/audio_player_cubit.dart';
 import 'package:voice_diary/features/record_details/cubit/record_details_cubit.dart';
 import 'package:voice_diary/features/record_details/edit_record_details/models/edit_record_details_view_model.dart';
+import 'package:voice_diary/features/snackbar/app_snackbar.dart';
+import 'package:voice_diary/features/snackbar/app_snackbar_type.dart';
 import 'package:voice_diary/l10n/app_localizations.dart';
 import 'package:voice_diary/routing/paths.dart';
 import 'package:voice_diary/widgets/primary_button.dart';
@@ -24,7 +28,21 @@ class RecordDetailsMobileLayout extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final theme = context.theme;
 
-    return BlocBuilder<RecordDetailsCubit, RecordDetailsState>(
+    return BlocConsumer<RecordDetailsCubit, RecordDetailsState>(
+      listener: (context, state) async {
+        context.loaderOverlay.hide();
+        if (state.status.isLoading) {
+          context.loaderOverlay.show();
+        } else if (state.status.isSuccess) {
+          context.push(Paths.home);
+        } else if (state.status.isFailure) {
+          AppSnackbar.show(
+            message: l10n.sorry_we_have_problems_please_try_again_later,
+            type: AppSnackbarType.negative,
+            context: context,
+          );
+        }
+      },
       builder: (context, state) {
         return Stack(
           children: [
@@ -104,21 +122,55 @@ class RecordDetailsMobileLayout extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: PrimaryButton(
-                text: l10n.edit,
-                onTap: () async {
-                  final result = await context.push(
-                    Paths.editRecordDetails,
-                    extra: state
-                        .recordDetailsViewModel!.editRecordDetailsViewModel,
-                  ) as EditRecordDetailsViewModel?;
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PrimaryButton(
+                    text: l10n.edit,
+                    onTap: () async {
+                      final result = await context.push(
+                        Paths.editRecordDetails,
+                        extra: state
+                            .recordDetailsViewModel!.editRecordDetailsViewModel,
+                      ) as EditRecordDetailsViewModel?;
 
-                  if (result != null && context.mounted) {
-                    context.read<RecordDetailsCubit>().init(
-                          result.detailsViewModel,
-                        );
-                  }
-                },
+                      if (result != null && context.mounted) {
+                        context.read<RecordDetailsCubit>().init(
+                              result.detailsViewModel,
+                            );
+                      }
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: AppDimens.m,
+                    ),
+                    child: GestureDetector(
+                      onTap: () async =>
+                          await context.read<RecordDetailsCubit>().delete(),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            PhosphorIcons.trash(),
+                            color: theme.colorScheme.error,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: AppDimens.s,
+                            ),
+                            child: Text(
+                              l10n.delete,
+                              style: theme.textTheme.bodyLarge?.copyWith(
+                                color: theme.colorScheme.error,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
           ],

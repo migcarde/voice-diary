@@ -125,7 +125,9 @@ class AppDependencyInjection {
     );
 
     getIt.registerFactory<RecordDetailsCubit>(
-      () => RecordDetailsCubit(),
+      () => RecordDetailsCubit(
+        deleteRecord: getIt(),
+      ),
     );
 
     getIt.registerFactory<EditRecordDetailsCubit>(

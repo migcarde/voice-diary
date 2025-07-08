@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:core/core.dart';
+import 'package:domain/use_cases/record/delete_record.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:voice_diary/core/app_theme.dart';
@@ -12,16 +13,23 @@ import 'package:voice_diary/l10n/app_localizations.dart';
 class MockAudioPlayerCubit extends MockCubit<AudioPlayerState>
     implements AudioPlayerCubit {}
 
+class MockDeleteRecord extends Mock implements DeleteRecord {}
+
 void main() {
   late MockAudioPlayerCubit audioPlayerCubit;
+  late MockDeleteRecord deleteRecord;
   final today = DateTime.now();
+
   setUp(() {
     audioPlayerCubit = MockAudioPlayerCubit();
+    deleteRecord = MockDeleteRecord();
     getIt.registerFactory<AudioPlayerCubit>(
       () => audioPlayerCubit,
     );
     getIt.registerFactory<RecordDetailsCubit>(
-      () => RecordDetailsCubit(),
+      () => RecordDetailsCubit(
+        deleteRecord: deleteRecord,
+      ),
     );
   });
   testWidgets('show record details page', (WidgetTester tester) async {
