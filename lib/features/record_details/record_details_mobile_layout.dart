@@ -84,6 +84,8 @@ class RecordDetailsMobileLayout extends StatelessWidget {
                       top: AppDimens.m,
                     ),
                     child: Wrap(
+                      spacing: AppDimens.s,
+                      runSpacing: AppDimens.s,
                       children: state.recordDetailsViewModel!.tags
                           .map(
                             (tag) => PrimaryChip(
