@@ -6,4 +6,6 @@ extension StringExtensions on String {
   bool get isStrongPassword =>
       RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
           .hasMatch(this);
+
+  bool get isBlankOrEmpty => trim().isEmpty;
 }

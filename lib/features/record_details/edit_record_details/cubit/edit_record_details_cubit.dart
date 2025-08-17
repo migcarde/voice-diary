@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:voice_diary/extensions/string_extensions.dart';
 import 'package:voice_diary/features/record_details/edit_record_details/models/edit_record_details_view_model.dart';
 
 part 'edit_record_details_state.dart';
@@ -31,24 +32,26 @@ class EditRecordDetailsCubit extends Cubit<EditRecordDetailsState> {
   }
 
   void addTag(String tag) {
-    final List<String> tags = <String>[];
-    tags.addAll(
-      [
-        ...state.editRecordDetailsViewModel?.tags ?? [],
-        tag,
-      ],
-    );
+    if (!tag.isBlankOrEmpty) {
+      final List<String> tags = <String>[];
+      tags.addAll(
+        [
+          ...state.editRecordDetailsViewModel?.tags ?? [],
+          tag,
+        ],
+      );
 
-    final editRecordDetailsViewModel =
-        state.editRecordDetailsViewModel?.copyWith(
-      tags: tags,
-    );
+      final editRecordDetailsViewModel =
+          state.editRecordDetailsViewModel?.copyWith(
+        tags: tags,
+      );
 
-    emit(
-      state.copyWith(
-        editRecordDetailsViewModel: editRecordDetailsViewModel,
-      ),
-    );
+      emit(
+        state.copyWith(
+          editRecordDetailsViewModel: editRecordDetailsViewModel,
+        ),
+      );
+    }
   }
 
   void removeTag(String tag) {

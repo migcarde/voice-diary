@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
 import 'package:domain/use_cases/record/save_record.dart';
+import 'package:voice_diary/extensions/string_extensions.dart';
 import 'package:voice_diary/features/voice_record_entry/save_record_entry/models/save_record_entry_view_model.dart';
 
 part 'save_record_entry_state.dart';
@@ -49,7 +50,7 @@ class SaveRecordEntryCubit extends Cubit<SaveRecordEntryState> {
   }
 
   void addTag(String tag) {
-    if (tag.isNotEmpty) {
+    if (!tag.isBlankOrEmpty) {
       final List<String> tags = [
         ...state.viewModel?.tags ?? [],
         tag,
