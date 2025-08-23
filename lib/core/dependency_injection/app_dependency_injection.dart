@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:core/services/get_it_service.dart';
 import 'package:domain/domain.dart';
 import 'package:firebase_login/core/dependency_injection/firebase_login_dependency_injection.dart';
@@ -35,8 +36,8 @@ class AppDependencyInjection {
       () => SpeechToText(),
     );
 
-    getIt.registerLazySingleton<FlutterSoundPlayer>(
-      () => FlutterSoundPlayer(),
+    getIt.registerLazySingleton<AudioPlayer>(
+      () => AudioPlayer(),
     );
 
     getIt.registerLazySingleton<SoundRecoderService>(

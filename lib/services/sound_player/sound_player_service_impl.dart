@@ -1,5 +1,5 @@
-import 'package:flutter_sound/public/flutter_sound_player.dart';
-import 'package:flutter_sound_platform_interface/flutter_sound_platform_interface.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:voice_diary/services/sound_player/sound_player_service.dart';
 
 class SoundPlayerServiceImpl implements SoundPlayerService {
@@ -7,35 +7,34 @@ class SoundPlayerServiceImpl implements SoundPlayerService {
     required this.player,
   });
 
-  final FlutterSoundPlayer player;
+  final AudioPlayer player;
 
   @override
-  Future<void> close() async => await player.closePlayer();
+  Future<void> close() async => await player.dispose();
 
   @override
-  Future<FlutterSoundPlayer?> open() async => await player.openPlayer();
+  Future<void> pause() async => await player.pause();
 
   @override
-  Future<void> pause() async => await player.pausePlayer();
+  Future<Duration?> getDuration() => player.getDuration();
 
   @override
-  Stream<PlaybackDisposition>? get progress => player.onProgress;
+  Future<void> resume() async => await player.resume();
 
   @override
-  Future<void> resume() async => await player.resumePlayer();
+  Stream<Duration> get onDurationChanged => player.onDurationChanged;
 
   @override
-  Future<void> setSubscriptionDuration(Duration duration) async =>
-      await player.setSubscriptionDuration(duration);
+  Future<void> start(String path) async {
+    final status = await Permission.audio.request();
 
-  @override
-  Future<void> start({required Codec codec, required String file}) async =>
-      await player.startPlayer(
-        codec: codec,
-        fromURI: file,
+    if (status.isGranted) {
+      await player.play(
+        DeviceFileSource(path),
       );
+    }
+  }
 
   @override
-  Future<void> seekToPlayer(Duration duration) async =>
-      await player.seekToPlayer(duration);
+  Future<void> seek(Duration duration) async => await player.seek(duration);
 }

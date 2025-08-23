@@ -39,12 +39,13 @@ dependencies:
   intl: any
   firebase_core: ^3.12.1
   another_flushbar: ^1.12.30
-  flutter_sound: ^9.25.4
+  flutter_sound: ^9.17.8
   permission_handler: ^11.4.0
   clock: ^1.1.2
   speech_to_text: ^7.0.0
   flutter_launcher_icons: ^0.14.4
   loader_overlay: ^5.0.0
+  audioplayers: ^6.5.0
 
 dev_dependencies:
   flutter_test:

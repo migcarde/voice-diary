@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/core.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_sound/flutter_sound.dart';
 import 'package:voice_diary/services/sound_player/sound_player_service.dart';
 
 part 'audio_player_state.dart';
@@ -17,41 +15,6 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
     required String path,
     required Duration recordDuration,
   }) async {
-    await soundPlayerService.open();
-    await soundPlayerService.setSubscriptionDuration(
-      const Duration(
-        seconds: 1,
-      ),
-    );
-
-    soundPlayerService.progress?.listen((e) {
-      setDuration(
-        state.position +
-            const Duration(
-              seconds: 1,
-            ),
-      );
-      debugPrint(state.position.toString());
-      debugPrint(state.recordDuration.toString());
-
-      if (state.position == Duration.zero) {
-        debugPrint('initial');
-        emit(
-          state.copyWith(
-            status: AudioPlayerStatus.initial,
-          ),
-        );
-      } else if (state.position == state.recordDuration) {
-        debugPrint('finished');
-        emit(
-          state.copyWith(
-            position: Duration.zero,
-            status: AudioPlayerStatus.ready,
-          ),
-        );
-      }
-    });
-
     emit(
       state.copyWith(
         path: path,
@@ -68,15 +31,17 @@ class AudioPlayerCubit extends Cubit<AudioPlayerState> {
       );
 
   Future<void> updateDuration(Duration duration) async {
-    await soundPlayerService.seekToPlayer(duration);
+    await soundPlayerService.seek(duration);
     setDuration(duration);
   }
 
   Future<void> start() async {
-    await soundPlayerService.start(
-      codec: Codec.aacMP4,
-      file: state.path,
-    );
+    try {
+      await soundPlayerService.start(state.path);
+    } catch (e) {
+      rethrow;
+    }
+
     emit(
       state.copyWith(
         position: Duration.zero,

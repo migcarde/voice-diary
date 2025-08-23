@@ -68,7 +68,7 @@ void main() {
         const Duration(seconds: 10),
       ),
       setUp: () {
-        when(() => soundPlayerService.seekToPlayer(const Duration(seconds: 10)))
+        when(() => soundPlayerService.seek(const Duration(seconds: 10)))
             .thenAnswer((_) async {});
         when(() => soundPlayerService.close()).thenAnswer((_) async {});
       },

@@ -33,13 +33,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get repeat_password => 'Repetir contraseña';
 
   @override
-  String get user_already_registered_please_use_another_email => 'Usuario ya registrado, por favor, usa otro correo';
+  String get user_already_registered_please_use_another_email =>
+      'Usuario ya registrado, por favor, usa otro correo';
 
   @override
-  String get invalid_credentials_please_try_again => 'Credenciales no validas, por favor, inténtalo de nuevo';
+  String get invalid_credentials_please_try_again =>
+      'Credenciales no validas, por favor, inténtalo de nuevo';
 
   @override
-  String get sorry_we_have_problems_please_try_again_later => 'Lo siento, tenemos problemas, por favor, inténtalo de nuevo';
+  String get sorry_we_have_problems_please_try_again_later =>
+      'Lo siento, tenemos problemas, por favor, inténtalo de nuevo';
 
   @override
   String get are_you_not_registered_question => '¿No estás registrado?';
@@ -48,25 +51,29 @@ class AppLocalizationsEs extends AppLocalizations {
   String get password_does_not_match => 'Las contraseñas no coinciden';
 
   @override
-  String get passwords_is_weak => 'La cotraseña es débil, por favor, usa una contraseña que contenga al menos 8 caracteres uno de ellos en mayúscula, otro en minúscula, un número y un carácter especial (@#\$%^&)';
+  String get passwords_is_weak =>
+      'La cotraseña es débil, por favor, usa una contraseña que contenga al menos 8 caracteres uno de ellos en mayúscula, otro en minúscula, un número y un carácter especial (@#\$%^&)';
 
   @override
   String get email_not_valid => 'Correo no valido';
 
   @override
-  String get tap_to_begin_your_voice_recor_entry => 'Pulsa para comenzar la grabación';
+  String get tap_to_begin_your_voice_recor_entry =>
+      'Pulsa para comenzar la grabación';
 
   @override
   String get recording_dots => 'Grabando...';
 
   @override
-  String get did_you_want_to_save_this_recording => '¿Quieres guardar esta grabación?';
+  String get did_you_want_to_save_this_recording =>
+      '¿Quieres guardar esta grabación?';
 
   @override
   String get are_you_sure => '¿Estás seguro?';
 
   @override
-  String get this_action_cannot_be_undone => 'Esta acción no puede ser deshecha';
+  String get this_action_cannot_be_undone =>
+      'Esta acción no puede ser deshecha';
 
   @override
   String get cancel => 'Cancelar';
@@ -96,10 +103,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get delete_account => 'Borrar cuenta';
 
   @override
-  String get you_must_enter_your_credentials_again_to_delete_your_account => 'Vuelve a autenticarte para borrar tu cuenta';
+  String get you_must_enter_your_credentials_again_to_delete_your_account =>
+      'Vuelve a autenticarte para borrar tu cuenta';
 
   @override
-  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered => 'Todos los datos relacionados con esta cuenta se borrarán y no podrán ser recuperados';
+  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered =>
+      'Todos los datos relacionados con esta cuenta se borrarán y no podrán ser recuperados';
 
   @override
   String get records => 'Grabaciones';

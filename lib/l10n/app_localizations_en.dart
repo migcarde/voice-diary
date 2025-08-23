@@ -33,13 +33,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get repeat_password => 'Repeat password';
 
   @override
-  String get user_already_registered_please_use_another_email => 'User is already registered, please, use another email';
+  String get user_already_registered_please_use_another_email =>
+      'User is already registered, please, use another email';
 
   @override
-  String get invalid_credentials_please_try_again => 'Invalid credentials, please, try again';
+  String get invalid_credentials_please_try_again =>
+      'Invalid credentials, please, try again';
 
   @override
-  String get sorry_we_have_problems_please_try_again_later => 'Sorry we have problems, please, try again later';
+  String get sorry_we_have_problems_please_try_again_later =>
+      'Sorry we have problems, please, try again later';
 
   @override
   String get are_you_not_registered_question => 'Are you not registered?';
@@ -48,19 +51,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password_does_not_match => 'Passwords doesn\'t match';
 
   @override
-  String get passwords_is_weak => 'Password is weak, please use a password that has at least 8 letters, one of them in upper case and another one in lowe case, one number and one special character (@#\$%^&)';
+  String get passwords_is_weak =>
+      'Password is weak, please use a password that has at least 8 letters, one of them in upper case and another one in lowe case, one number and one special character (@#\$%^&)';
 
   @override
   String get email_not_valid => 'Email not valid';
 
   @override
-  String get tap_to_begin_your_voice_recor_entry => 'Tap to begin your voice record entry';
+  String get tap_to_begin_your_voice_recor_entry =>
+      'Tap to begin your voice record entry';
 
   @override
   String get recording_dots => 'Recording...';
 
   @override
-  String get did_you_want_to_save_this_recording => 'Did you want to save this recording?';
+  String get did_you_want_to_save_this_recording =>
+      'Did you want to save this recording?';
 
   @override
   String get are_you_sure => 'Are you sure?';
@@ -96,10 +102,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete_account => 'Delete account';
 
   @override
-  String get you_must_enter_your_credentials_again_to_delete_your_account => 'You must enter your credentials again to delete your account';
+  String get you_must_enter_your_credentials_again_to_delete_your_account =>
+      'You must enter your credentials again to delete your account';
 
   @override
-  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered => 'All date related to this account will be deleted and cannot be recovered';
+  String get all_data_related_to_this_account_will_be_deleted_and_cannot_be_recovered =>
+      'All date related to this account will be deleted and cannot be recovered';
 
   @override
   String get records => 'Records';
@@ -108,7 +116,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
-  String get you_have_not_added_any_record_yet => 'You haven\'t added any record yet';
+  String get you_have_not_added_any_record_yet =>
+      'You haven\'t added any record yet';
 
   @override
   String get record_entry => 'Record entry';
