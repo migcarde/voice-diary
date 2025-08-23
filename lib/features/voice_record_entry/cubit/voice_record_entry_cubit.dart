@@ -63,7 +63,7 @@ class VoiceRecordEntryCubit extends Cubit<VoiceRecordEntryState> {
 
   Future<void> startRecording() async {
     final today = clock.now();
-    final file = '${today.toString()}.mp4';
+    final file = '${today.toString().replaceAll(':', '-')}.mp4';
     await soundRecoderService.start(
       codec: Codec.aacMP4,
       file: file,
